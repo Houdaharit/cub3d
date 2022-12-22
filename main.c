@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
+/*   Updated: 2022/12/23 00:34:41 by hharit           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int main()
+int	main(void)
 {
-	t_cub3d *cub = NULL;
+	t_cub3d	*cub;
 
-	cub = (t_cub3d*)malloc(sizeof(t_cub3d));
+	cub = (t_cub3d *)malloc(sizeof(t_cub3d));
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub, 800, 800, "cub3d");
 	mlx_hook(cub->win, 2, 1L >> 0, ft_close, (void *)cub);
