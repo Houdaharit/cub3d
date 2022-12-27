@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2022/12/26 16:26:39 by hharit           ###   ########.fr       */
+/*   Updated: 2022/12/27 16:50:25 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init(t_cub3d *cub)
 	cub = (t_cub3d *)malloc(sizeof(t_cub3d));
 	cub->mlx = mlx_init();
 	cub->win = mlx_new_window(cub, 800, 800, "cub3d");
+	//player position
 	cub->posx = 22;
 	cub->posy = 12;
 	cub->dirx = -1;
