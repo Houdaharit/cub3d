@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2022/12/27 16:50:25 by hharit           ###   ########.fr       */
+/*   Updated: 2022/12/27 19:49:10 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(void)
 {
 	t_cub3d	*cub;
 
+	cub = NULL;
 	init(cub);
 	raycasting(cub);
 	mlx_hook(cub->win, 2, 1L >> 0, ft_close, (void *)cub);

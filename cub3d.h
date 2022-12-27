@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2022/12/27 17:38:38 by hharit           ###   ########.fr       */
+/*   Updated: 2022/12/27 19:59:41 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ typedef struct s_cub3d
 	double	sidey;
 	double	dx;
 	double	dy;
+	int		x;
+	int		y;
+	double	stepx;
+	double	stepy;
+	int		side;
 }t_cub3d;
 
 int	destroy(t_cub3d *cub);
