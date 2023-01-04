@@ -55,7 +55,7 @@ void	dist_x_y(t_cub3d *cub)
 void dda(t_cub3d *cub, char **map)
 {
 	dist_x_y(cub);
-	while (map[cub->x][cub->y] != 1)
+	while (map[cub->x][cub->y] != '1')
 	{
 		if (cub->dx < cub->dy)
 		{
@@ -74,5 +74,14 @@ void dda(t_cub3d *cub, char **map)
 
 void	raycasting(t_cub3d *cub, char **map)
 {
-	dda(cub, map);
+	int	x = 0;
+
+	while (x < 800)
+	{
+		cub->camerax = 2 * x / (double)800 - 1;
+		cub->raydirX = cub->dirx + cub->planex * cub->camerax;
+		cub->raydirY = cub->diry + cub->planey * cub->camerax;
+		dda(cub, map);
+		x++;
+	}
 }

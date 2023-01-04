@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <math.h>
 # include <stdlib.h>
+# include "parsing/parsing.h"
 
 typedef struct s_cub3d
 {
@@ -29,8 +30,6 @@ typedef struct s_cub3d
 	double	planey;
 	double	raydirX;
 	double	raydirY;
-	double	sidex;
-	double	sidey;
 	double	dx;
 	double	dy;
 	int		x;
@@ -40,6 +39,7 @@ typedef struct s_cub3d
 	int	stepx;
 	int	stepy;
 	int		side;
+	double	camerax;
 }t_cub3d;
 
 int	destroy(t_cub3d *cub);

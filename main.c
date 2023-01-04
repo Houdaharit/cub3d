@@ -14,7 +14,6 @@
 
 void	init(t_cub3d *cub)
 {
-	cub = (t_cub3d *)malloc(sizeof(t_cub3d));
 	//cub->mlx = mlx_init();
 	//	cub->win = mlx_new_window(cub, 800, 800, "cub3d");
 	//player position
@@ -26,13 +25,23 @@ void	init(t_cub3d *cub)
 	cub->planey = 0.66;
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_cub3d	*cub;
-	
-	cub = NULL;
+	t_data	map;	
+
+	if (argc == 2)
+	{
+		valid_map(argv[1], &map);
+		storecolores(&map);
+	}
+
+	else
+		printf("please enter a valid map only !\n");
+
+	cub = (t_cub3d *)malloc(sizeof(t_cub3d));
 	init(cub);
-	raycasting(cub, map);
+	raycasting(cub, map.map);
 	//	mlx_hook(cub->win, 2, 1L >> 0, ft_close, (void *)cub);
 	//	mlx_hook(cub->win, 17, 0, destroy, (void *)cub);
 	//	mlx_loop(cub->mlx);
