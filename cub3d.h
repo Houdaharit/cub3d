@@ -35,12 +35,14 @@ typedef struct s_cub3d
 	double	dy;
 	int		x;
 	int		y;
-	double	stepx;
-	double	stepy;
+	double	deltax;
+	double	deltay;
+	int	stepx;
+	int	stepy;
 	int		side;
 }t_cub3d;
 
 int	destroy(t_cub3d *cub);
 int	ft_close(int keycode, t_cub3d *cub);
-
+void	raycasting(t_cub3d *cub, char **map);
 #endif

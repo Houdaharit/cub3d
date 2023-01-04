@@ -12,60 +12,67 @@
 
 #include "cub3d.h"
 
-void raylen(t_cub3d *cub)
+void	delta_x_y(t_cub3d *cub)
 {
 	if (!cub->raydirX)
-		cub->dx = 1e30;
+		cub->deltax = 1e30;
 	else
-		cub->dx = fabs(1 / cub->raydirX);
+		cub->deltax = fabs(1 / cub->raydirX);
 	if (!cub->raydirY)
-		cub->dy = 1e30;
+		cub->deltay = 1e30;
 	else
-		cub->dy = fabs(1 / cub->raydirY);
+		cub->deltay = fabs(1 / cub->raydirY);
 }
 
-void	raylen_start(t_cub3d *cub)
+void	dist_x_y(t_cub3d *cub)
 {
 	cub->x = (int)cub->posx;
 	cub->y = (int)cub->posy;
+
+	delta_x_y(cub);
 	if (cub->raydirX < 0)
 	{
 		cub->stepx = -1;
-		cub->sidex = (cub->posx - cub->x) * cub->dx;
+		cub->dx = (cub->posx - cub->x) * cub->deltax;
 	}
 	else
 	{
 		cub->stepx = 1;
-		cub->sidex = (cub->x + 1.0 - cub->posx) * cub->dx;
+		cub->dx = (cub->x + 1.0 - cub->posx) * cub->deltax;
 	}
 	if (cub->raydirY < 0)
 	{
 		cub->stepy = -1;
-		cub->sidey = (cub->posy - cub->y) * cub->dy;
+		cub->dy = (cub->posy - cub->y) * cub->deltay;
 	}
 	else
 	{
 		cub->stepy = 1;
-		cub->sidey = (cub->y + 1.0 - cub->posy) * cub->dy;
+		cub->dy = (cub->y + 1.0 - cub->posy) * cub->deltay;
 	}
 }
 
 void dda(t_cub3d *cub, char **map)
 {
-
+	dist_x_y(cub);
 	while (map[cub->x][cub->y] != '1')
 	{
-		if (cub->sidex < cub->sidey)
+		if (cub->dx < cub->dy)
 		{
-			cub->sidex += cub->dx;
+			cub->dx += cub->deltax;
 			cub->x += cub->stepx;
 			cub->side = 0;
 		}
 		else
 		{
-			cub->sidey += cub->dy;
+			cub->dy += cub->deltay;
 			cub->y += cub->stepy;
 			cub->side = 1;
 		}
 	}
+}
+
+void	raycasting(t_cub3d *cub, char **map)
+{
+	dda(cub, map);
 }
