@@ -55,7 +55,7 @@ void	dist_x_y(t_cub3d *cub)
 void dda(t_cub3d *cub, char **map)
 {
 	dist_x_y(cub);
-	while (map[cub->x][cub->y] != '1')
+	while (map[cub->x][cub->y] != 1)
 	{
 		if (cub->dx < cub->dy)
 		{
