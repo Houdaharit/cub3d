@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/13 00:31:20 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/13 00:32:38 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,10 @@ void	dist_x_y(t_cub3d *cub)
 	}
 }
 
-void dda(t_cub3d *cub, char **map)
+void dda(t_cub3d *cub)
 {
 	dist_x_y(cub);
-	while (map[cub->x][cub->y] != '1')
+	while (cub->map[cub->x][cub->y] != '1')
 	{
 		if (cub->dx < cub->dy)
 		{
@@ -75,7 +75,7 @@ void dda(t_cub3d *cub, char **map)
 	printf("Wall\n");
 }
 
-void	raycasting(t_cub3d *cub, char **map)
+void	raycasting(t_cub3d *cub)
 {
 	int	x = 0;
 
@@ -84,7 +84,7 @@ void	raycasting(t_cub3d *cub, char **map)
 		cub->camerax = 2 * x / (double)cub->width - 1;
 		cub->raydirX = cub->dirx + cub->planex * cub->camerax;
 		cub->raydirY = cub->diry + cub->planey * cub->camerax;
-		dda(cub, map);
+		dda(cub);
 		x++;
 	}
 }

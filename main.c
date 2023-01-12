@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/13 00:30:26 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/13 00:32:56 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	}
 	cub = (t_cub3d *)malloc(sizeof(t_cub3d));
 	init(cub, map);
-	raycasting(cub, map.map);
+	raycasting(cub);
 	mlx_hook(cub->win, 2, 1L >> 0, ft_close, (void *)cub);
 	mlx_hook(cub->win, 17, 0, destroy, (void *)cub);
 	mlx_loop(cub->mlx);

@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:09:39 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/13 00:28:26 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/13 00:35:30 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void    check_color_and_textures(t_data *data);
 int     player_position(t_data *data);
 int     closed_map(char **str, int n_line);
 int     count_lines(const char *str);
-int     check_spaces(char **str, int c_lines);
+int     check_spaces(char **str);
 void    storecolores(t_data *data);
 
 #endif
