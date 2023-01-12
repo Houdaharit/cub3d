@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2022/12/27 19:59:41 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/12 22:19:48 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ typedef struct s_cub3d
 {
 	void	*mlx;
 	void	*win;
+	double	width;
+	double	height;	
 	double	posx;
 	double	posy;
 	double	dirx;
@@ -42,7 +44,8 @@ typedef struct s_cub3d
 	double	camerax;
 }t_cub3d;
 
-int	destroy(t_cub3d *cub);
-int	ft_close(int keycode, t_cub3d *cub);
+int		destroy(t_cub3d *cub);
+int		ft_close(int keycode, t_cub3d *cub);
 void	raycasting(t_cub3d *cub, char **map);
+
 #endif
