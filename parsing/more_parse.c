@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:05:59 by ahakam            #+#    #+#             */
-/*   Updated: 2022/12/27 16:13:54 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/01/13 00:04:15 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int count_lines(const char *str)
     }
     line = get_next_line(fd);
     i = 0;
-    
     while (line)
     {
         i++;

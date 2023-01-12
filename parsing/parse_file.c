@@ -67,14 +67,15 @@ void    valid_map(char *av, t_data *data)
     data->file = read_fd(av);
     data->filename = strchr(av, '.');
     get_map(data, count_lines(av));
-    if(data->map)
+    if (data->map)
     {
         while(data->map[data->map_lenght])
             data->map_lenght++;
         data->closed = closed_map(data->map,data->map_lenght);
         data->spaces = check_spaces(data->map, data->map_lenght);
     }
-    if (strcmp(data->filename, ".cub") || !player_position(data)|| !data->spaces || !data->closed)
+    if (strcmp(data->filename, ".cub") || !player_position(data)\
+    || !data->spaces || !data->closed)
     {
         write(2,"invalid file or map !\n", 23);
         exit(1);

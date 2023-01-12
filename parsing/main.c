@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:47:26 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/12 23:32:05 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/13 00:05:49 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ int main(int argc, char **argv)
         
     else
         printf("please enter a valid map only !\n");
-    int i = 0;
-    // while(map.Carr[i])
+    printf("%c\n",map.map[map.xPposition][map.yPposition]);
+    // int i = 0;
+    // while(map.Farr[i])
     // {
     //      printf("%d\n",map.Farr[i]);
     //      printf("|%d|\n",map.Carr[i]);
     //      i++;
     // }
-   printf("%d\n",map.xPposition);
-   printf("%d\n",map.yPposition);
-   printf("%c\n", map.map[map.xPposition][map.yPposition]);
+
     // while(map.map[i])
     // {
     //     printf("%s\n",map.map[i]);

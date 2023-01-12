@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:05:39 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/12 22:41:15 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/13 00:05:27 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int player_position(t_data *data)
             || data->map[data->i][data->j] == 'E' || data->map[data->i][data->j] == 'W')
             {
                  data->p_found ++;
-                 data->xPposition = data->j + 1;
-                 data->yPposition = data->i + 1;
+                 data->xPposition = data->i;
+                 data->yPposition = data->j;
             }
             if (data->map[data->i][data->j] != 'N' && data->map[data->i][data->j] != 'S' && data->map[data->i][data->j] != 'E' && \
             data->map[data->i][data->j] != 'W' && data->map[data->i][data->j] != '0' && data->map[data->i][data->j] != ' ' && \
@@ -99,6 +99,7 @@ int closed_map(char **str, int n_line)
 {
     int line_counter;
     int i;
+    int j;
 
     i = 0;
     line_counter = 0;
@@ -118,8 +119,6 @@ int check_spaces(char **str, int c_lines)
     int i;
     int j;
 
-	//to be removed
-	(void)c_lines;
     i = 0;
     while(str[i])
     {
