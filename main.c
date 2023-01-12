@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2022/12/27 19:49:10 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/11 22:27:26 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init(t_cub3d *cub)
 {
-	//cub->mlx = mlx_init();
-	//	cub->win = mlx_new_window(cub, 800, 800, "cub3d");
+	cub->mlx = mlx_init();
+	cub->win = mlx_new_window(cub, 800, 800, "cub3d");
 	//player position
 	cub->posx = 22;
 	cub->posy = 12;
@@ -25,24 +25,13 @@ void	init(t_cub3d *cub)
 	cub->planey = 0.66;
 }
 
-int	main(int argc, char **argv)
+int	main()
 {
 	t_cub3d	*cub;
-	t_data	map;	
-
-	if (argc == 2)
-	{
-		valid_map(argv[1], &map);
-		storecolores(&map);
-	}
-
-	else
-		printf("please enter a valid map only !\n");
-
 	cub = (t_cub3d *)malloc(sizeof(t_cub3d));
 	init(cub);
-	raycasting(cub, map.map);
-	//	mlx_hook(cub->win, 2, 1L >> 0, ft_close, (void *)cub);
-	//	mlx_hook(cub->win, 17, 0, destroy, (void *)cub);
-	//	mlx_loop(cub->mlx);
+	//raycasting(cub, map.map);
+	mlx_hook(cub->win, 2, 1L >> 0, ft_close, (void *)cub);
+	mlx_hook(cub->win, 17, 0, destroy, (void *)cub);
+	mlx_loop(cub->mlx);
 }
