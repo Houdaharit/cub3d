@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/12 22:19:48 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/12 23:27:40 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,11 @@ typedef struct s_cub3d
 	int		y;
 	double	deltax;
 	double	deltay;
-	int	stepx;
-	int	stepy;
+	int		stepx;
+	int		stepy;
 	int		side;
 	double	camerax;
+	char	**map;
 }t_cub3d;
 
 int		destroy(t_cub3d *cub);

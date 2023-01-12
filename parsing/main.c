@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:47:26 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/12 22:30:05 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/12 23:32:05 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int main(int argc, char **argv)
     // }
    printf("%d\n",map.xPposition);
    printf("%d\n",map.yPposition);
+   printf("%c\n", map.map[map.xPposition][map.yPposition]);
     // while(map.map[i])
     // {
     //     printf("%s\n",map.map[i]);
