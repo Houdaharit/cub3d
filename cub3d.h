@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/13 00:33:07 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/17 00:52:34 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct s_cub3d
 	double	diry;
 	double	planex;
 	double	planey;
-	double	raydirX;
-	double	raydirY;
+	double	raydirx;
+	double	raydiry;
 	double	dx;
 	double	dy;
 	int		x;
@@ -43,10 +43,13 @@ typedef struct s_cub3d
 	int		side;
 	double	camerax;
 	char	**map;
+	double	perpdistwall;
+	double	wallx;
 }t_cub3d;
 
 int		destroy(t_cub3d *cub);
 int		ft_close(int keycode, t_cub3d *cub);
 void	raycasting(t_cub3d *cub);
-
+void	dda(t_cub3d *cub);
+void	x_hit_wall(t_cub3d *cub);
 #endif
