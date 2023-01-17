@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/17 00:47:00 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/17 02:13:19 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,17 @@ void	init(t_cub3d *cub, t_data map)
 	cub->diry = 0;
 	cub->planex = 0;
 	cub->planey = 0.66;
+	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
+	cub->addr = mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
+			&(cub->line_length), &(cub->endian));
 }
+void    my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
+{
+	char    *dst;
 
+	dst = fr->addr + (y * fr->line_length + x * (fr->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
 int	main(int argc, char **argv)
 {
 	t_cub3d	*cub;
@@ -45,7 +54,18 @@ int	main(int argc, char **argv)
 	}
 	cub = (t_cub3d *)malloc(sizeof(t_cub3d));
 	init(cub, map);
-	raycasting(cub);
+	//raycasting(cub);
+	int i = 100, j =100;
+	while (i < cub->height)
+	{
+		while (j < cub->width)
+		{
+			my_mlx_pixel_put(cub, i, j, 0x00FF0000);
+			j++;
+		}
+		i++;
+	}
+	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 	mlx_hook(cub->win, 2, 1L >> 0, ft_close, (void *)cub);
 	mlx_hook(cub->win, 17, 0, destroy, (void *)cub);
 	mlx_loop(cub->mlx);
