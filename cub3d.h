@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/17 01:51:36 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/17 03:19:31 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 
 typedef struct s_cub3d
 {
-	void	*mlx;
-	void	*win;
-	void	*addr;
-	void	*img;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+    void    *mlx;
+    void    *win;
+    void    *img;
+    void    *addr;
+    int     bits_per_pixel;
+    int     line_length;
+    int     endian;
 	double	width;
 	double	height;	
 	double	posx;
@@ -59,4 +59,5 @@ void	raycasting(t_cub3d *cub);
 void	dda(t_cub3d *cub);
 void	x_hit_wall(t_cub3d *cub);
 void	draw(t_cub3d *cub);
+void	my_mlx_pixel_put(t_cub3d*, int, int, int);
 #endif
