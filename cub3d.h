@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/17 03:19:31 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/18 00:43:25 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,16 @@ typedef struct s_cub3d
 	double	perpdistwall;
 	double	wallx;
 	int		line_height;
+	int		pixel;
+	double	rotspeed;
 }t_cub3d;
 
 int		destroy(t_cub3d *cub);
 int		ft_close(int keycode, t_cub3d *cub);
-void	raycasting(t_cub3d *cub);
+int		raycasting(t_cub3d *cub);
 void	dda(t_cub3d *cub);
-void	x_hit_wall(t_cub3d *cub);
+void	x_hit_wall_height(t_cub3d *cub);
 void	draw(t_cub3d *cub);
 void	my_mlx_pixel_put(t_cub3d*, int, int, int);
+int		moves(int keycode, t_cub3d *cub);
 #endif

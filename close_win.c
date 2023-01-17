@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:46 by hharit            #+#    #+#             */
-/*   Updated: 2022/12/23 00:31:35 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/17 22:03:41 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@ int	destroy(t_cub3d *cub)
 int	ft_close(int keycode, t_cub3d *cub)
 {
 	if (keycode == 53)
-	{
 		destroy(cub);
-		free(cub->win);
-	}
 	return (0);
 }

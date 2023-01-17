@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:47:26 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/13 00:05:49 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/01/13 00:55:45 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ int main(int argc, char **argv)
     {
         valid_map(argv[1], &map);
         storecolores(&map);
-    }
-        
+    }  
     else
         printf("please enter a valid map only !\n");
-    printf("%c\n",map.map[map.xPposition][map.yPposition]);
     // int i = 0;
     // while(map.Farr[i])
     // {

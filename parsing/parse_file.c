@@ -71,7 +71,7 @@ void    valid_map(char *av, t_data *data)
     {
         while(data->map[data->map_lenght])
             data->map_lenght++;
-		data->closed = closed_map(data->map,data->map_lenght);
+        data->closed = closed_map(data->map,data->map_lenght);
         data->spaces = check_spaces(data->map);
     }
     if (strcmp(data->filename, ".cub") || !player_position(data)\

@@ -6,14 +6,14 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:09:39 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/13 00:35:30 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/17 22:43:18 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef parsing_H
 #define parsing_H
 
-#include "gnl/get_next_line.h"
+#include "get_next_line.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
