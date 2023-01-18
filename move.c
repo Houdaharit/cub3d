@@ -34,19 +34,36 @@ void	rotation_left(t_cub3d *cub)
 	cub->planey = old_planex * sin(cub->rotspeed) + cub->planey * cos(cub->rotspeed);
 }
 
-void	forward(t_cub3d *cub)
+void	forward_back(t_cub3d *cub, int keycode)
 {
-	if(cub->map[(int)(cub->posx + cub->dirx * cub->movespeed)][(int)cub->posy] != '1')
-		cub->posx += cub->dirx * cub->movespeed;
-	if(cub->map[(int)cub->posx][(int)(cub->posy + cub->diry * cub->movespeed)] != '1')
-		cub->posy += cub->diry * cub->movespeed;
+	int	x;
+	int	y;
+
+	if (keycode == 126)
+	{
+		x = (int)(cub->posx + cub->dirx * cub->movespeed);
+		y = (int)(cub->posy + cub->diry * cub->movespeed);
+		if(cub->map[x][(int)cub->posy] == '0')
+			cub->posx += cub->dirx * cub->movespeed;
+		if(cub->map[(int)cub->posx][y] == '0')
+			cub->posy += cub->diry * cub->movespeed;
+	}
+	else
+	{
+		x = (int)(cub->posx - cub->dirx * cub->movespeed);
+		y = (int)(cub->posy - cub->diry * cub->movespeed);
+		if(cub->map[x][(int)cub->posy] == '0')
+			cub->posx -= cub->dirx * cub->movespeed;
+		if(cub->map[(int)cub->posx][y] == '0')
+			cub->posy -= cub->diry * cub->movespeed;
+	}
 }
+
 int	moves(int keycode, t_cub3d *cub)
 {
-	printf("key: %d\n", keycode);
 	if (keycode == 53)
 		destroy(cub);
-	if (keycode == 13)
+	if (keycode == 124)
 	{
 		rotation_right(cub);
 		free_image(cub);
@@ -56,9 +73,9 @@ int	moves(int keycode, t_cub3d *cub)
 		rotation_left(cub);
 		free_image(cub);
 	}
-	if (keycode == 126)
+	if (keycode == 126 || keycode == 125)
 	{
-		forward(cub);
+		forward_back(cub, keycode);
 		free_image(cub);
 	}
 	return 1;
