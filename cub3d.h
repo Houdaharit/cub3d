@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/18 00:43:25 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/18 01:11:27 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_cub3d
 	int		line_height;
 	int		pixel;
 	double	rotspeed;
+	double	movespeed;
 }t_cub3d;
 
 int		destroy(t_cub3d *cub);

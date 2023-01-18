@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 00:42:07 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/18 00:41:16 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/18 01:03:02 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ void	delta_x_y(t_cub3d *cub)
 
 void	dist_x_y(t_cub3d *cub)
 {
+	delta_x_y(cub);
 	cub->x = (int)cub->posx;
 	cub->y = (int)cub->posy;
-	delta_x_y(cub);
 	if (cub->raydirx < 0)
 	{
 		cub->stepx = -1;
