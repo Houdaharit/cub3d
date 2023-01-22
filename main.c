@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/18 01:14:00 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/22 23:21:20 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init(t_cub3d *cub, t_data map)
 {
-	cub->width = 400;
-	cub->height = 400;
+	cub->width = 800;
+	cub->height = 800;
 	cub->map = map.map;
 	cub->posx = map.xPposition;
 	cub->posy = map.yPposition;
@@ -23,7 +23,7 @@ void	init(t_cub3d *cub, t_data map)
 	cub->diry = 0;
 	cub->planex = 0;
 	cub->planey = 0.66;
-	cub->rotspeed = 0.4;
+	cub->rotspeed = 0.8;
 	cub->movespeed = 1.0;
 	cub->win = mlx_new_window(cub->mlx, cub->width, cub->height, "cub3d");
 	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);

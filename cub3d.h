@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/18 01:55:03 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/22 22:57:27 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,6 @@ void	x_hit_wall_height(t_cub3d *cub);
 void	draw(t_cub3d *cub);
 void	my_mlx_pixel_put(t_cub3d*, int, int, int);
 int		moves(int keycode, t_cub3d *cub);
+void    delta_x_y(t_cub3d *cub);
+void	dist_x_y(t_cub3d *cub);
 #endif

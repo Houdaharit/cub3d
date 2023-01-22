@@ -2,7 +2,7 @@
 
 void	free_image(t_cub3d *cub)
 {
-	mlx_clear_window(cub->mlx, cub->win);
+//	mlx_clear_window(cub->mlx, cub->win);
 	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
 	cub->addr = mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
 			&(cub->line_length), &(cub->endian));
