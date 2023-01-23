@@ -6,20 +6,20 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 01:35:58 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 03:39:34 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //delete
-void	my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
+/*void	my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
 {
 	char	*dst;
 
 	dst = fr->addr + (y * fr->line_length + x * (fr->bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
+}*/
 
 void	x_hit_wall(t_cub3d *cub)
 {

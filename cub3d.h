@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 02:12:02 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 03:39:22 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_cub3d
     void    *mlx;
     void    *win;
     void    *img;
-    void    *addr;
+    int		*addr;
     int     bits_per_pixel;
     int     line_length;
     int     endian;
@@ -54,16 +54,19 @@ typedef struct s_cub3d
 	int		pixel;
 	double	rotspeed;
 	double	movespeed;
+	int		**buffer;
+	int		**textures;
 }t_cub3d;
 
 int		destroy(t_cub3d *cub);
 int		ft_close(int keycode, t_cub3d *cub);
 int		raycasting(t_cub3d *cub);
 void	dda(t_cub3d *cub);
-void	x_hit_wall_height(t_cub3d *cub);
+void	x_hit_wall(t_cub3d *cub);
 void	draw(t_cub3d *cub);
 void	my_mlx_pixel_put(t_cub3d*, int, int, int);
 int		moves(int keycode, t_cub3d *cub);
 void    delta_x_y(t_cub3d *cub);
 void	dist_x_y(t_cub3d *cub);
+void	draw(t_cub3d *cub);
 #endif
