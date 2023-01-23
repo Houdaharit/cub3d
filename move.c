@@ -6,15 +6,16 @@ void	free_image(t_cub3d *cub)
 	int j = 0;
 	while(i < cub->height)
 	{
-		while (j < cub->width * cub->width)
+		while (j < cub->width * cub->height)
 		{
 			cub->buffer[i][j] = 0;
 			j++;
 		}
 		i++;
 	}
+	mlx_destroy_image(cub->mlx, cub->img);
+	raycasting(cub);
 }
-
 void	rotation_right(t_cub3d *cub)
 {
 	double	old_dirx;

@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:58:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 23:32:35 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 23:46:44 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ void    draw(t_cub3d *cub)
 		drawstart = 0;
 	drawend = cub->line_height / 2 + cub->height / 2;
 	if (drawend >= cub->height) drawend = cub->height - 1;
-	y = drawstart;
 	texture_calcul(cub, drawstart, drawend);
+	y = 0;
 	while (y < cub->height)
 	{
+		x = 0;
 		while (x < cub->width)
 		{
 			cub->addr[(int)(y * cub->width + x)] = cub->buffer[y][x];

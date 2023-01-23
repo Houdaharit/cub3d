@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 23:03:47 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/24 00:35:57 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,17 @@ void	init(t_cub3d *cub, t_data map)
 	cub->planey = 0.66;
 	cub->rotspeed = 0.8;
 	cub->movespeed = 1.0;
-	cub->win = mlx_new_window(cub->mlx, cub->width, cub->height, "cub3d");
-	cub->img = mlx_xpm_file_to_image(cub->mlx, "./zellige.xpm" , (int*)&cub->width, (int*)&cub->height);
+	cub->img = mlx_xpm_file_to_image(cub->mlx, "./zellige.xpm" , (int*)&cub->img_width, (int*)&cub->img_height);
 	cub->addr = (int *)mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
 			&(cub->line_length), &(cub->endian));
 }
-
-void	init_textures(t_cub3d *cub)
+void	init_buffer(t_cub3d *cub)
 {
 	int	j;
 	int	i;
+	int	max;
 
-	int max = cub->height * cub->width;
-	cub->tex_width = 64;
-	cub->tex_height = 64;
+	max = cub->height * cub->width;
 	cub->buffer = (int**)malloc(sizeof(int*) * cub->height);
 	i = 0;
 	while (i < cub->height)
@@ -52,6 +49,17 @@ void	init_textures(t_cub3d *cub)
 		}
 		i++;
 	}
+}
+
+void	init_textures(t_cub3d *cub)
+{
+	int	j;
+	int	i;
+	int max;
+
+	cub->tex_width = 64;
+	cub->tex_height = 64;
+	init_buffer(cub);
 	cub->textures = (int**)malloc(sizeof(int*));
 	cub->textures[0] = (int*)malloc(sizeof(int) * cub->tex_width * cub->tex_height);
 	max = cub->tex_height * cub->tex_width;
@@ -61,6 +69,18 @@ void	init_textures(t_cub3d *cub)
 		cub->textures[0][j] = 0;
 		j++;
 	}
+	/*j = 0;
+	while (j < cub->img_height)
+	{
+		i = 0;
+		while (i < cub->img_width)
+		{
+					cub->textures[0][(int)cub->img_width * j + i] = cub->addr[(int)cub->img_width * j + i];
+			i++;
+		}
+		j++;
+	}*/
+	mlx_destroy_image(cub->mlx, cub->img);
 }
 
 int	main(int argc, char **argv)
@@ -81,6 +101,10 @@ int	main(int argc, char **argv)
 	cub.mlx = mlx_init();
 	init(&cub, map);
 	init_textures(&cub);
+	cub.win = mlx_new_window(cub.mlx, cub.width, cub.height, "cub3d");
+	cub.img = mlx_new_image(cub.mlx, cub.width, cub.height);
+	cub.addr = (int *)mlx_get_data_addr(cub.img, &(cub.bits_per_pixel),
+			&(cub.line_length), &(cub.endian));
 	mlx_loop_hook(cub.mlx, &raycasting, &cub);
 	mlx_hook(cub.win, 2, 0, moves, (void *)&cub);
 	mlx_loop(cub.mlx);
