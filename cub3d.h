@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 01:38:42 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 02:03:34 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_texture
 	int	tex_x;
 	int	tex_y;
 	int	tex_pos;
+	int	buffer[64][64];
 };
 
 int		destroy(t_cub3d *cub);
