@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 00:42:07 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/22 23:03:52 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 01:26:59 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	dda(t_cub3d *cub)
 		cub->perpdistwall = cub->dx - cub->deltax;
 	else
 		cub->perpdistwall = cub->dy - cub->deltay;
-	x_hit_wall_height(cub);
+	cub->line_height = (int)(cub->height / cub->perpdistwall);
+	x_hit_wall(cub);
 }
 
 void	dist_x_y(t_cub3d *cub)

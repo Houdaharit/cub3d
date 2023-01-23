@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/22 23:06:09 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 01:35:58 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,17 @@ void	my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	x_hit_wall_height(t_cub3d *cub)
+void	x_hit_wall(t_cub3d *cub)
 {
 	if (!cub->side)
 		cub->wallx = cub->posy + cub->perpdistwall * cub->raydiry;
 	else
 		cub->wallx = cub->posx + cub->perpdistwall * cub->raydirx;
 	cub->wallx -= (int)cub->wallx;
-	cub->line_height = (int)(cub->height / cub->perpdistwall);
 	draw(cub);
 }
 
-void	draw(t_cub3d *cub)
+/*void	draw(t_cub3d *cub)
 {
 	int	color = 0x0000FF;
 	int drawstart = cub->height / 2 - cub->line_height / 2;
@@ -48,7 +47,7 @@ void	draw(t_cub3d *cub)
 		i++;
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
-}
+}*/
 
 int	raycasting(t_cub3d *cub)
 {

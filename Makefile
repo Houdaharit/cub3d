@@ -4,12 +4,12 @@ CC = cc
 
 CFLAGS = -Wall -Wextra
 
-#SRC = main.c raycasting.c dda.c move.c\
+SRC = main.c raycasting.c dda.c move.c\
       parsing/parse_file.c parsing/get_next_line.c\
       parsing/get_next_line_utils.c parsing/split.c\
       parsing/more_parse.c parsing/parsing_utils.c  close_win.c
 
-SRC = tst.c
+#SRC = tst.c
 
 OBJ = $(SRC:.c=.o)
 
