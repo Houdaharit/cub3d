@@ -6,7 +6,7 @@ void	free_image(t_cub3d *cub)
 	int j = 0;
 	while(i < cub->height)
 	{
-		while (j < cub->width)
+		while (j < cub->width * cub->width)
 		{
 			cub->buffer[i][j] = 0;
 			j++;

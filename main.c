@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 04:07:02 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 22:19:46 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,39 +33,32 @@ void	init(t_cub3d *cub, t_data map)
 
 void	init_textures(t_cub3d *cub)
 {
-	int	y = 0;
-	int x = 0;
-	//calloc
-	while (x < 800)
+	int	j;
+	int	i;
+
+	cub->tex_width = 64;
+	cub->tex_height = 64;
+	cub->buffer = (int**)malloc(sizeof(int*) * cub->height);
+	i = 0;
+	while (i < cub->height)
 	{
-		while (y < 800)
+		cub->buffer[i] = (int*)malloc(sizeof(int) * cub->height * cub->width);
+		j = 0;
+		while (j < (cub->height * cub->width))
 		{
-			cub->buffer[x][y] = 0;
-			y++;
+			printf("HERE %d %d\n", i, j);
+			cub->buffer[i][j] = 0;
+			j++;
 		}
-		x++;
+		i++;
 	}
 	cub->textures = (int**)malloc(sizeof(int*));
-	x = 0;
-	cub->textures[0] = malloc(sizeof(int) * 64 *64);
-	while (x < (64 * 64))
+	j = 0;
+	while (j < cub->tex_height * cub->tex_width)
 	{
-		cub->textures[0][x] = 0;
-		x++;
+		cub->textures[0][j] = 0;
+		j++;
 	}
-	y = 0;
-	while (y < cub->height)
-	{
-		x = 0;
-		while(x < cub->width)
-		{
-			cub->textures[(int)cub->width * y + x] = &cub->addr[(int)cub->width * y + x];
-			x++;
-			printf("here\n");
-		}
-		y++;
-	}
-	mlx_destroy_image(cub->mlx, cub->img);
 }
 
 int	main(int argc, char **argv)
