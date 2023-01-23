@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 02:03:34 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 02:12:02 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,6 @@ typedef struct s_cub3d
 	double	rotspeed;
 	double	movespeed;
 }t_cub3d;
-
-typedef struct s_texture
-{
-	int	drawstart;
-	int	drawend;
-	int	tex_x;
-	int	tex_y;
-	int	tex_pos;
-	int	buffer[64][64];
-};
 
 int		destroy(t_cub3d *cub);
 int		ft_close(int keycode, t_cub3d *cub);
