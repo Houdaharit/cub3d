@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 22:19:46 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 23:03:47 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_textures(t_cub3d *cub)
 	int	j;
 	int	i;
 
+	int max = cub->height * cub->width;
 	cub->tex_width = 64;
 	cub->tex_height = 64;
 	cub->buffer = (int**)malloc(sizeof(int*) * cub->height);
@@ -44,17 +45,18 @@ void	init_textures(t_cub3d *cub)
 	{
 		cub->buffer[i] = (int*)malloc(sizeof(int) * cub->height * cub->width);
 		j = 0;
-		while (j < (cub->height * cub->width))
+		while (j < max)
 		{
-			printf("HERE %d %d\n", i, j);
 			cub->buffer[i][j] = 0;
 			j++;
 		}
 		i++;
 	}
 	cub->textures = (int**)malloc(sizeof(int*));
+	cub->textures[0] = (int*)malloc(sizeof(int) * cub->tex_width * cub->tex_height);
+	max = cub->tex_height * cub->tex_width;
 	j = 0;
-	while (j < cub->tex_height * cub->tex_width)
+	while (j < max)
 	{
 		cub->textures[0][j] = 0;
 		j++;
@@ -80,6 +82,6 @@ int	main(int argc, char **argv)
 	init(&cub, map);
 	init_textures(&cub);
 	mlx_loop_hook(cub.mlx, &raycasting, &cub);
-	mlx_hook(cub.win, 2, 1L >> 0, moves, (void *)&cub);
+	mlx_hook(cub.win, 2, 0, moves, (void *)&cub);
 	mlx_loop(cub.mlx);
 }

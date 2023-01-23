@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:58:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 03:50:56 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/23 23:32:35 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ void	texture_calcul(t_cub3d *cub, int drawstart, int drawend)
 	int tex_y;
 	int	tex_pos;
 
-	tex_x = (int)(cub->wallx * 64);
+	tex_x = (int)(cub->wallx * cub->tex_width);
 	if (!cub->side && cub->raydirx > 0)
-		tex_x = 64 - tex_x - 1;
+		tex_x = cub->tex_width - tex_x - 1;
 	if (cub->side == 1 && cub->raydirx < 0)
-		tex_x = 64 - tex_x - 1;
-	step = 1.0 * 64 / cub->line_height;
+		tex_x = cub->tex_width - tex_x - 1;
+	step = 1.0 * cub->tex_height / cub->line_height;
 	tex_pos = (drawstart - cub->height / 2 + cub->line_height / 2) * step;
-	y = 0;
+	y = drawstart;
 	while (y < drawend)
 	{
 		tex_y = (int)tex_pos;
 		tex_pos += step;
-		int color = cub->textures[0][64 * tex_y + tex_x];
+		int color = cub->textures[0][cub->tex_height * tex_y + tex_x];
 		if (cub->side == 1) color = (color >> 1);
 		cub->buffer[y][cub->pixel] = color;
 		y++;
