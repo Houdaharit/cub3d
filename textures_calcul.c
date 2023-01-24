@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:58:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/23 23:46:44 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/24 03:26:20 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ void	texture_calcul(t_cub3d *cub, int drawstart, int drawend)
 	y = drawstart;
 	while (y < drawend)
 	{
-		tex_y = (int)tex_pos;
+		tex_y = (int)tex_pos & (cub->tex_height - 1);
 		tex_pos += step;
 		int color = cub->textures[0][cub->tex_height * tex_y + tex_x];
-		if (cub->side == 1) color = (color >> 1);
+		if (cub->side == 1) color = (color >> 1) & 8355711;
 		cub->buffer[y][cub->pixel] = color;
 		y++;
 	}
@@ -65,5 +65,3 @@ void    draw(t_cub3d *cub)
 	}
 	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
 }
-
-
