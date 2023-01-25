@@ -17,7 +17,7 @@ void	ceils(t_cub3d *cub)
 		while (cub->map[j][i])
 		{
 			if (cub->map[j][i] == '1')
-				mlx_put_image_to_window(cub->mlx, cub->win, cub->walls, x , y );
+				mlx_put_image_to_window(cub->mlx, cub->win, cub->walls, x , y);
 			if (j == (int)cub->posx && i == (int)cub->posy)
 				mlx_put_image_to_window(cub->mlx, cub->win, cub->player, x, y);
 			x += cub->img_width;

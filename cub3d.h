@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 04:32:11 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 07:26:07 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_cub3d
     void    *img;
 	void 	*walls;
 	void	*player;
-    void		*addr;
+    int		*addr;
     int     bits_per_pixel;
     int     line_length;
     int     endian;
@@ -83,4 +83,8 @@ void	init_direction(t_cub3d *cub);
 void	init_player(t_cub3d *cub, t_data map);
 void	init_north_west(t_cub3d *cub);
 void	init_south_east(t_cub3d *cub);
+void	init_textures(t_cub3d *cub);
+void	init_buffer(t_cub3d *cub);
+void	load_image(t_cub3d *cub, t_data map);
+void	free_image(t_cub3d *cub);
 #endif

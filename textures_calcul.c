@@ -6,11 +6,24 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 02:58:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/24 03:26:20 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 07:09:19 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	texture_num(t_cub3d *cub)
+{
+	if (cub->side == 1 && cub->raydiry < 0)
+		return 0;
+	if (cub->side == 1 && cub->raydiry < 0)
+		return 1;
+	if (cub->side == 0 && cub->raydirx > 0)
+		return 2;
+	if (cub->side == 0 && cub->raydirx < 0)
+		return 3;
+	return -1;
+}
 
 void	texture_calcul(t_cub3d *cub, int drawstart, int drawend)
 {
@@ -19,7 +32,9 @@ void	texture_calcul(t_cub3d *cub, int drawstart, int drawend)
 	int tex_x;
 	int tex_y;
 	int	tex_pos;
+	int	tex_num;
 
+	tex_num = texture_num(cub);
 	tex_x = (int)(cub->wallx * cub->tex_width);
 	if (!cub->side && cub->raydirx > 0)
 		tex_x = cub->tex_width - tex_x - 1;
@@ -32,7 +47,7 @@ void	texture_calcul(t_cub3d *cub, int drawstart, int drawend)
 	{
 		tex_y = (int)tex_pos & (cub->tex_height - 1);
 		tex_pos += step;
-		int color = cub->textures[0][cub->tex_height * tex_y + tex_x];
+		int color = cub->textures[tex_num][cub->tex_height * tex_y + tex_x];
 		if (cub->side == 1) color = (color >> 1) & 8355711;
 		cub->buffer[y][cub->pixel] = color;
 		y++;

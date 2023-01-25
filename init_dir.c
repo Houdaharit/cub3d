@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 04:20:52 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 04:37:13 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 06:28:11 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,10 @@ void	init_south_east(t_cub3d *cub)
 		cub->planex = 0.66;
 		cub->planey = 0;
 	}
+}
+
+void    init_direction(t_cub3d *cub)
+{
+    init_north_west(cub);
+    init_south_east(cub);
 }
