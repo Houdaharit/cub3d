@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 04:12:42 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 07:19:05 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 07:45:04 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	init_window(t_cub3d *cub)
 void	init_player(t_cub3d *cub, t_data map)
 {
 	cub->rotspeed = 0.7;
-	cub->movespeed = 2.1;
+	cub->movespeed = 0.5;
 	cub->posx = map.xPposition;
 	cub->posy = map.yPposition;
 	init_direction(cub);
