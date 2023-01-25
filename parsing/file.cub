@@ -1,7 +1,7 @@
-NO /Users/hharit/Desktop/cub3d
-SO /Users/hharit/Desktop/cub3d
-WE /Users/hharit/Desktop
-EA /Users/hharit
+NO /Users/hharit/Desktop/cub3d/textures/greenlight.xpm
+SO /Users/hharit/Desktop/cub3d/textures/purplestone.xpm
+WE /Users/hharit/Desktop/cub3d/textures/bluestone.xpm
+EA /Users/hharit/Desktop/cub3d/textures/eagle.xpm
 
 F 220,400,0
 C 225,30,0

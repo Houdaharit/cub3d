@@ -6,30 +6,12 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 02:18:32 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 05:43:11 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init(t_cub3d *cub, t_data map)
-{
-	cub->width = 800;
-	cub->height = 800;
-	cub->map = map.map;
-	cub->posx = map.xPposition;
-	cub->posy = map.yPposition;
-	cub->dirx = -1;
-	cub->diry = 0;
-	cub->planex = 0;
-	cub->planey = 0.66;
-	cub->rotspeed = 0.7;
-	cub->movespeed = 1.1;
-	cub->win = mlx_new_window(cub->mlx, cub->width, cub->height, "cub3d");
-   	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
-	cub->addr = (int *)mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
-			&(cub->line_length), &(cub->endian));
-}
 void	init_buffer(t_cub3d *cub)
 {
 	int	j;
@@ -105,8 +87,8 @@ int	main(int argc, char **argv)
 	cub.mlx = mlx_init();
 	init(&cub, map);
 	//	init_textures(&cub);
-	ceils(&cub);
 	raycasting(&cub);
+	ceils(&cub);
 	mlx_hook(cub.win, 2, 0, moves, (void *)&cub);
 	mlx_loop(cub.mlx);
 }
