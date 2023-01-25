@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:05:39 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/13 00:53:19 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/01/25 02:26:50 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int wall_search(char *line , int n_line, int count)
     if (!count || count == n_line - 1)
     {
         i = 0;
-        while(i + j < ft_strlen(line) - 1)
+        while((unsigned long)(i + j) < ft_strlen(line) - 1)
         {
             if (line[i + j] != '1' && line[i + j] != ' ')
                 return 0;
@@ -73,7 +73,7 @@ int player_position(t_data *data)
     while (data->map[data->i])
     {
         data->j = 0;
-        while (data->j < ft_strlen(data->map[data->i]) - 1)
+        while ((unsigned long)data->j < ft_strlen(data->map[data->i]) - 1)
         {
             if (data->map[data->i][data->j] == 'N' || data->map[data->i][data->j] == 'S' \
             || data->map[data->i][data->j] == 'E' || data->map[data->i][data->j] == 'W')
@@ -99,7 +99,6 @@ int closed_map(char **str, int n_line)
 {
     int line_counter;
     int i;
-    int j;
 
     i = 0;
     line_counter = 0;

@@ -6,8 +6,6 @@ void	ceils(t_cub3d *cub)
 	int j = 0;
 	int x = 0;
 	int y = 0;
-	int x1 = 0;
-	int y1 = 0;
 	int	img_width, img_height;
 
 	cub->player = mlx_xpm_file_to_image(cub->mlx, "./red.xpm", (int*)&cub->img_width, (int*)&cub->img_height);
