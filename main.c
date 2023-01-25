@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 01:40:13 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 02:18:32 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ int	main(int argc, char **argv)
 	cub.mlx = mlx_init();
 	init(&cub, map);
 	//	init_textures(&cub);
-	raycasting(&cub);
 	ceils(&cub);
+	raycasting(&cub);
 	mlx_hook(cub.win, 2, 0, moves, (void *)&cub);
 	mlx_loop(cub.mlx);
 }
