@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/24 03:23:54 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 01:28:19 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@ void	init(t_cub3d *cub, t_data map)
 	cub->diry = 0;
 	cub->planex = 0;
 	cub->planey = 0.66;
-	cub->rotspeed = 0.8;
-	cub->movespeed = 1.0;
-	cub->img = mlx_xpm_file_to_image(cub->mlx, "./wall.xpm" , (int*)&cub->img_width, (int*)&cub->img_height);
+	cub->rotspeed = 0.7;
+	cub->movespeed = 1.1;
+	cub->win = mlx_new_window(cub->mlx, cub->width, cub->height, "cub3d");
+    cub->player = mlx_xpm_file_to_image(cub->mlx, "./red.xpm", (int*)&cub->img_width, (int*)&cub->img_height);
+	cub->walls = mlx_xpm_file_to_image(cub->mlx, "./green.xpm", (int*)&cub->img_width, (int*)&cub->img_height);
+	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
 	cub->addr = (int *)mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
 			&(cub->line_length), &(cub->endian));
 }
@@ -40,7 +43,7 @@ void	init_buffer(t_cub3d *cub)
 	i = 0;
 	while (i < cub->height)
 	{
-	//	cub->buffer[i] = (int*)malloc(sizeof(int) * cub->height * cub->width);
+		//	cub->buffer[i] = (int*)malloc(sizeof(int) * cub->height * cub->width);
 		j = 0;
 		while (j < cub->width)
 		{
@@ -51,7 +54,7 @@ void	init_buffer(t_cub3d *cub)
 	}
 }
 
-void	init_textures(t_cub3d *cub)
+/*void	init_textures(t_cub3d *cub)
 {
 	int	j;
 	int	i;
@@ -75,7 +78,7 @@ void	init_textures(t_cub3d *cub)
 		i = 0;
 		while (i < cub->img_width)
 		{
-					cub->textures[0][(int)cub->img_width * j + i] = cub->addr[(int)cub->img_width * j + i];
+			cub->textures[0][(int)cub->img_width * j + i] = cub->addr[(int)cub->img_width * j + i];
 			i++;
 		}
 		j++;
@@ -84,7 +87,7 @@ void	init_textures(t_cub3d *cub)
 	cub->addr = (int *)mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
 			&(cub->line_length), &(cub->endian));
 
-}
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -103,9 +106,9 @@ int	main(int argc, char **argv)
 	}
 	cub.mlx = mlx_init();
 	init(&cub, map);
-	cub.win = mlx_new_window(cub.mlx, cub.width, cub.height, "cub3d");
-	init_textures(&cub);
-		mlx_loop_hook(cub.mlx, &raycasting, &cub);
+	//	init_textures(&cub);
+	raycasting(&cub);
+	ceils(&cub);
 	mlx_hook(cub.win, 2, 0, moves, (void *)&cub);
 	mlx_loop(cub.mlx);
 }

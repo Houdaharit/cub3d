@@ -2,19 +2,22 @@
 
 void	free_image(t_cub3d *cub)
 {
-	int i = 0;
-	int j = 0;
+	/*int i = 0;
+	  int j = 0;
 
-	while(i < cub->height)
-	{
-		j = 0;
-		while (j < cub->width)
-		{
-			cub->buffer[i][j] = 0;
-			j++;
-		}
-		i++;
-	}
+	  while(i < cub->height)
+	  {
+	  j = 0;
+	  while (j < cub->width)
+	  {
+	  cub->buffer[i][j] = 0;
+	  j++;
+	  }
+	  i++;
+	  }*/
+	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
+	cub->addr = (int *)mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
+			&(cub->line_length), &(cub->endian));
 }
 
 void	rotation_right(t_cub3d *cub)
@@ -76,16 +79,22 @@ int	moves(int keycode, t_cub3d *cub)
 	{
 		rotation_right(cub);
 		free_image(cub);
+		raycasting(cub);
+		ceils(cub);
 	}
 	if (keycode == 123)
 	{
 		rotation_left(cub);
 		free_image(cub);
+		raycasting(cub);
+		ceils(cub);
 	}
 	if (keycode == 126 || keycode == 125)
 	{
 		forward_back(cub, keycode);
 		free_image(cub);
+		raycasting(cub);
+		ceils(cub);
 	}
 	return 1;
 }

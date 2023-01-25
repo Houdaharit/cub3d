@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/24 02:27:58 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 00:55:41 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,9 @@ typedef struct s_cub3d
     void    *mlx;
     void    *win;
     void    *img;
-    int		*addr;
+	void 	*walls;
+	void	*player;
+    void		*addr;
     int     bits_per_pixel;
     int     line_length;
     int     endian;
@@ -73,4 +75,5 @@ int		moves(int keycode, t_cub3d *cub);
 void    delta_x_y(t_cub3d *cub);
 void	dist_x_y(t_cub3d *cub);
 void	draw(t_cub3d *cub);
+void    ceils(t_cub3d *cub);
 #endif
