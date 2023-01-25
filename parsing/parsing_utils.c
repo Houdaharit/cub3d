@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:05:39 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/25 02:26:50 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 03:34:30 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int player_position(t_data *data)
                  data->p_found ++;
                  data->xPposition = data->i;
                  data->yPposition = data->j;
+				 data->direction = data->map[data->i][data->j];
             }
             if (data->map[data->i][data->j] != 'N' && data->map[data->i][data->j] != 'S' && data->map[data->i][data->j] != 'E' && \
             data->map[data->i][data->j] != 'W' && data->map[data->i][data->j] != '0' && data->map[data->i][data->j] != ' ' && \

@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:09:39 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/17 22:43:18 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/25 03:33:28 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data
     char **east;
     char **south;
     char **floor;
+	char direction;
     char *filename;
     char **ceilling;
     int Farr[3];
