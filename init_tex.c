@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 06:28:38 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 07:20:54 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 01:23:18 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	get_textures(t_cub3d *cub, int *texture, char *path)
 void	load_image(t_cub3d *cub, t_data map)
 {
 	init_textures(cub);
-	get_textures(cub, cub->textures[0], "./textures1/wall.xpm");
-	get_textures(cub, cub->textures[1], "./textures1/wall.xpm");
-	get_textures(cub, cub->textures[2], "./textures1/wall.xpm");
-	get_textures(cub, cub->textures[3], "./textures1/wall.xpm");
+	get_textures(cub, cub->textures[0], map.north[1]);
+	get_textures(cub, cub->textures[1], map.west[1]);
+	get_textures(cub, cub->textures[2], map.east[1]);
+	get_textures(cub, cub->textures[3], map.south[1]);
 }

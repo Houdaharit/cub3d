@@ -5,37 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 04:12:42 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 07:45:04 by hharit           ###   ########.fr       */
+/*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
+/*   Updated: 2023/01/27 02:23:06 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_window(t_cub3d *cub)
+void	init_window(t_mlx *mlx)
 {
-	cub->win = mlx_new_window(cub->mlx, cub->width, cub->height, "cub3d");
-	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
-	cub->addr = (int *)mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
-			&(cub->line_length), &(cub->endian));
+	mlx->width = 800;
+	mlx->heiht = 800;
+	mlx->mlx = mlx_init();
+	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "cub3d");
 }
 
-void	init_player(t_cub3d *cub, t_data map)
+void	init_player(t_player *player, t_data map)
 {
-	cub->rotspeed = 0.7;
-	cub->movespeed = 0.5;
-	cub->posx = map.xPposition;
-	cub->posy = map.yPposition;
-	init_direction(cub);
+	player->posx = map.xPposition;
+	player->posy = map.yPposition;
+	player->move_speed = 1.0;
+	player->rotation_speed = 2 * (M_PI / 180);
+	player->rot_angle = M_PI / 2;
+	player->turn_dir = 0;
+	player->walk_dir = 0;
 }
 
 void	init(t_cub3d *cub, t_data map)
 {
-	cub->width = 800;
-	cub->height = 800;
+	init_window(&cub.mlx);
+	init_player(&cub.player, map);
 	cub->map = map.map;
-	cub->direction = map.direction;
-	init_player(cub, map);
-	load_image(cub, map);
-	init_window(cub);
+	cub->tile-size = 64;
 }
