@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/17 22:03:41 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 03:29:19 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	destroy(t_cub3d *cub)
 {
-	mlx_destroy_window(cub->mlx, cub->win);
-	free(cub->mlx);
+	mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+	free(cub->mlx.mlx);
 	exit(0);
 	return (0);
 }

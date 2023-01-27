@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 03:15:40 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 03:33:13 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_player
 	int	rotation_speed;
 	int	turn_dir;
 	int	walk_dir;
-	int	rotdd_dir;
 	int	rot_angle;
 }	t_player;
 
@@ -51,4 +50,7 @@ typedef struct	s_cub3d
 	double		fov_angle;
 }	t_cub3d;
 
+void	move(int keycode, t_cu3d *cub);
+bool	if_hit_wall(t_cub3d *cub, int x, int y);
+void	move_player(t_cub3d *cub);
 #endif

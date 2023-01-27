@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 02:23:06 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 03:10:23 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,17 @@ void	init_player(t_player *player, t_data map)
 	player->walk_dir = 0;
 }
 
+void	init_cub(t_cub3d *cub)
+{
+	cub->map = map.map;
+	cub->tile_size = 64;
+	cub->fov_angle = 60 * (M_PI / 180);
+}
+
 void	init(t_cub3d *cub, t_data map)
 {
 	init_window(&cub.mlx);
+	init_cub(cub);
 	init_player(&cub.player, map);
-	cub->map = map.map;
-	cub->tile-size = 64;
+	init_cub(cub);
 }
