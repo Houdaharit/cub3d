@@ -6,19 +6,40 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:10:03 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 08:12:40 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 08:42:55 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	check_grid(t_cub3d cub, int x, int y, char dir)
+{
+	int	grid_x;
+	int	grid_y;
+
+	if (dir == 'H')
+	{
+		if (cub.player.face == 'N')
+			y -= 1;
+	}
+	else if (dir == 'V')
+	{
+		if (cub.player.face == 'W')
+			x -= 1;
+	}
+	if (x < 0 || x > cub.mlx.width || y < 0 || y > cub.mlx.height)
+		return (0);
+	grid_x = floor(x / cub.tile_size);
+	grid_y = floor(y / cub.tile_size);
+	return (cub.map[grid_x][grid_y] == '1');
+}
 
 double	wallx_y_h(t_cub3d *cub, t_inter inter)
 {
 	while (inter.x >= 0 && inter.x <= cub->mlx.width
 		&& inter.y >= 0 && inter.y <= cub->mlx.height)
 	{
-		//It needs a function to check
-		if (cub->map[inter.x][inter.y] == '1')
+		if (check_grid(*cub, inter.x, inter.y, 'H'))
 		{
 			inter.horizontal = true;
 			inter.wallx = inter.x;
@@ -42,8 +63,7 @@ double	wallx_y_v(t_cub3d *cub, t_inter inter)
 	while (inter.x >= 0 && inter.x <= cub->mlx.width
 		&& inter.y >= 0 && inter.y <= cub->mlx.height)
 	{
-		//It needs a function to check
-		if (cub->map[inter.x][inter.y] == '1')
+		if (check_grid(*cub, inter.x, inter.y, 'V'))
 		{
 			inter.vertical = true;
 			inter.wallx = inter.x;
