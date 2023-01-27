@@ -6,90 +6,104 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:10:03 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 07:02:25 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 08:12:40 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	wallx_y_h(t_cub3 *cub)
+double	wallx_y_h(t_cub3d *cub, t_inter inter)
 {
-	while (cub->inter.x >= 0 && cub->inter.x <= cub->mlx.width
-		&& cub->inter.y >= 0 && cub->inter.y <= cub->mlx.height)
+	while (inter.x >= 0 && inter.x <= cub->mlx.width
+		&& inter.y >= 0 && inter.y <= cub->mlx.height)
 	{
-		if (cub->map[cub->inter.x][cub->inter.y] == '1')
+		//It needs a function to check
+		if (cub->map[inter.x][inter.y] == '1')
 		{
-			cub->ray.horizontal = true;
-			cub->ray.wallx = cub->inter.x;
-			cub->ray.wally = cub->inter.y;
+			inter.horizontal = true;
+			inter.wallx = inter.x;
+			inter.wally = inter.y;
 			break ;
 		}
 		else
 		{
-			cub->inter.x += cub->inter.stepx;
-			cub->inter.y += cub->inter.stepy;
+			inter.x += inter.stepx;
+			inter.y += inter.stepy;
 		}
 	}
-	default_inter(&cub.inter);
+	if (inter.horizontal)
+		inter.distance = hypot(cub->player.posx - inter.wallx,
+				cub->player.posy - inter.wally);
+	return (inter.distance);
 }
 
-void	wallx_y_v(t_cub3d *cub)
+double	wallx_y_v(t_cub3d *cub, t_inter inter)
 {
-	while (cub->inter.x >= 0 && cub->inter.x <= cub->mlx.width
-		&& cub->inter.y >= 0 && cub->inter.y <= cub->mlx.height)
+	while (inter.x >= 0 && inter.x <= cub->mlx.width
+		&& inter.y >= 0 && inter.y <= cub->mlx.height)
 	{
-		if (cub->map[cub->inter.x][cub->inter.y] == '1')
+		//It needs a function to check
+		if (cub->map[inter.x][inter.y] == '1')
 		{
-			cub->ray.vertical = true;
-			cub->ray.wallx = cub->inter.x;
-			default_inter(&cub.inter);
+			inter.vertical = true;
+			inter.wallx = inter.x;
+			inter.wally = inter.y;
 			break ;
 		}
 		else
 		{
-			cub->inter.x += cub->inter.stepx;
-			cub->inter.y += cub->inter.stepy;
+			inter.x += inter.stepx;
+			inter.y += inter.stepy;
 		}
 	}
-	default_inter(&cub.inter);
+	if (inter.vertical)
+		inter.distance = hypot(cub->player.posx - inter.wallx,
+				cub->player.posy - inter.wally);
+	return (inter.distance);
 }
 
 void	v_intersection(t_cub3d *cub)
 {
-	cub->inter.x = floor(cub->player.posx / cub->tile_size) * tile_size;
+	t_inter	inter;
+
+	default_inter(&inter);
+	inter.x = floor(cub->player.posx / cub->tile_size) * cub->tile_size;
 	if (cub->player.face == 'E')
-		cub->inter.x *= -1;
-	cub->inter.y = cub->player.posy + (cub->inter.y - cub->player.posy)
+		inter.x *= -1;
+	inter.y = cub->player.posy + (inter.y - cub->player.posy)
 		/ tan(cub->ray.ray_angle);
-	cub->inter.stepx = cub->tile_size;
+	inter.stepx = cub->tile_size;
 	if (cub->player.face == 'W')
-		cub->inter.stepx *= -1;
-	cub->inter.stepy = cub->tile_size * tan(cub->ray.ray_angle);
-	if (cub->player.face == 'N' && cub->inter.stepy > 0)
-		cub->inter.stepy *= -1;
-	if (cub->player.face == 'S' && cub->inter.stepy < 0)
-		cub->inter.stepy *= -1;
+		inter.stepx *= -1;
+	inter.stepy = cub->tile_size * tan(cub->ray.ray_angle);
+	if (cub->player.face == 'N' && inter.stepy > 0)
+		inter.stepy *= -1;
+	if (cub->player.face == 'S' && inter.stepy < 0)
+		inter.stepy *= -1;
 	if (cub->player.face == 'N')
-		cub->inter.y--;
-	wallx_y_v(cub);
+		inter.y--;
+	wallx_y_v(cub, inter);
 }
 
 void	h_intersection(t_cub3d *cub)
 {
-	cub->inter.y = floor(cub->player.posy / cub->tile_size) * cub->tile_size;
+	t_inter	inter;
+
+	default_inter(&inter);
+	inter.y = floor(cub->player.posy / cub->tile_size) * cub->tile_size;
 	if (cub->player.face == 'S')
-		cub->inter.y += cub->tile_size;
-	cub->inter.x = cub->player.posx + (cub->inter.y - cub->player.posy)
+		inter.y += cub->tile_size;
+	inter.x = cub->player.posx + (inter.y - cub->player.posy)
 		/ tan(cub->ray.ray_angle);
-	cub->inter.stepy = cub->size_tile;
+	inter.stepy = cub->tile_size;
 	if (cub->player.face == 'N')
-		cub->inter.stepy *= -1;
-	cub->inter.stepx = cub->tile_size / tan(cub->ray.ray_angle);
-	if (cub->player.face == 'W' && dx > 0)
-		cub->inter.stepx *= -1;
-	if (cub->player.face == 'E' && dx < 0)
-		cub->inter.stepx *= -1;
+		inter.stepy *= -1;
+	inter.stepx = cub->tile_size / tan(cub->ray.ray_angle);
+	if (cub->player.face == 'W' && inter.stepx > 0)
+		inter.stepx *= -1;
+	if (cub->player.face == 'E' && inter.stepx < 0)
+		inter.stepx *= -1;
 	if (cub->player.face == 'N')
-		cub->inter.y--;
-	wallx_y_h(cub);
+		inter.y--;
+	wallx_y_h(cub, inter);
 }
