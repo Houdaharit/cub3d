@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:10:03 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 08:54:31 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 09:02:50 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,55 +34,55 @@ int	check_grid(t_cub3d cub, int x, int y, char dir)
 	return (cub.map[grid_x][grid_y] == '1');
 }
 
-double	wallx_y_h(t_cub3d *cub, t_inter inter)
+double	wallx_y_h(t_cub3d *cub, t_inter &inter)
 {
-	while (inter.x >= 0 && inter.x <= cub->mlx.width
-		&& inter.y >= 0 && inter.y <= cub->mlx.height)
+	while (inter->x >= 0 && inter->x <= cub->mlx.width
+		&& inter->y >= 0 && inter->y <= cub->mlx.height)
 	{
-		if (check_grid(*cub, inter.x, inter.y, 'H'))
+		if (check_grid(*cub, inter->x, inter->y, 'H'))
 		{
-			inter.horizontal = true;
-			inter.wallx = inter.x;
-			inter.wally = inter.y;
+			inter->horizontal = true;
+			inter->wallx = inter->x;
+			inter->wally = inter->y;
 			break ;
 		}
 		else
 		{
-			inter.x += inter.stepx;
-			inter.y += inter.stepy;
+			inter->x += inter->stepx;
+			inter->y += inter->stepy;
 		}
 	}
-	if (inter.horizontal)
-		inter.distance = hypot(cub->player.posx - inter.wallx,
-				cub->player.posy - inter.wally);
-	return (inter.distance);
+	if (inter->horizontal)
+		inter->distance = hypot(cub->player.posx - inter->wallx,
+				cub->player.posy - inter->wally);
+	return (inter->distance);
 }
 
-double	wallx_y_v(t_cub3d *cub, t_inter inter)
+double	wallx_y_v(t_cub3d *cub, t_inter &inter)
 {
-	while (inter.x >= 0 && inter.x <= cub->mlx.width
-		&& inter.y >= 0 && inter.y <= cub->mlx.height)
+	while (inter->x >= 0 && inter->x <= cub->mlx.width
+		&& inter->y >= 0 && inter->y <= cub->mlx.height)
 	{
-		if (check_grid(*cub, inter.x, inter.y, 'V'))
+		if (check_grid(*cub, inter->x, inter->y, 'V'))
 		{
-			inter.vertical = true;
-			inter.wallx = inter.x;
-			inter.wally = inter.y;
+			inter->vertical = true;
+			inter->wallx = inter->x;
+			inter->wally = inter->y;
 			break ;
 		}
 		else
 		{
-			inter.x += inter.stepx;
-			inter.y += inter.stepy;
+			inter->x += inter->stepx;
+			inter->y += inter->stepy;
 		}
 	}
-	if (inter.vertical)
-		inter.distance = hypot(cub->player.posx - inter.wallx,
-				cub->player.posy - inter.wally);
-	return (inter.distance);
+	if (inter->vertical)
+		inter->distance = hypot(cub->player.posx - inter->wallx,
+				cub->player.posy - inter->wally);
+	return (inter->distance);
 }
 
-void	v_intersection(t_cub3d *cub)
+t_inter	v_intersection(t_cub3d *cub)
 {
 	t_inter	inter;
 
@@ -102,10 +102,10 @@ void	v_intersection(t_cub3d *cub)
 		inter.stepy *= -1;
 	if (cub->player.face == 'N')
 		inter.y--;
-	wallx_y_v(cub, inter);
+	wallx_y_v(cub, &inter);
 }
 
-void	h_intersection(t_cub3d *cub)
+t_inter	h_intersection(t_cub3d *cub)
 {
 	t_inter	inter;
 
@@ -125,5 +125,5 @@ void	h_intersection(t_cub3d *cub)
 		inter.stepx *= -1;
 	if (cub->player.face == 'N')
 		inter.y--;
-	wallx_y_h(cub, inter);
+	wallx_y_h(cub, &inter);
 }
