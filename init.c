@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 03:10:23 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 05:08:53 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	init_player(t_player *player, t_data map)
 	player->rot_angle = M_PI / 2;
 	player->turn_dir = 0;
 	player->walk_dir = 0;
+	player->face = map.direction;
 }
 
 void	init_cub(t_cub3d *cub)
