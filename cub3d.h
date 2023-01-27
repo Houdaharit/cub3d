@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 03:33:13 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 05:05:35 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,14 @@ typedef struct s_mlx
 typedef struct s_player
 {
 	//maybe I have to change some variables' type
-	int	posx;
-	int	posy;
-	int	move_speed;
-	int	rotation_speed;
-	int	turn_dir;
-	int	walk_dir;
-	int	rot_angle;
+	int		posx;
+	int		posy;
+	int		move_speed;
+	int		rotation_speed;
+	int		turn_dir;
+	int		walk_dir;
+	int		rot_angle;
+	char	face;
 }	t_player;
 
 typedef struct	s_cub3d
