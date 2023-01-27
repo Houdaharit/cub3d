@@ -4,7 +4,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra
 
-SRC = main.c move.c init.c \
+SRC = main.c move.c init.c intersection.c\
       parsing/parse_file.c parsing/get_next_line.c\
       parsing/get_next_line_utils.c parsing/split.c\
       parsing/more_parse.c parsing/parsing_utils.c close_win.c

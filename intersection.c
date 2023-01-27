@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:10:03 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 09:30:22 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 09:50:50 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ t_inter	v_intersection(t_cub3d *cub)
 	if (cub->player.face == 'N')
 		inter.y--;
 	wallx_y_v(cub, &inter);
+	return (inter);
 }
 
 t_inter	h_intersection(t_cub3d *cub)
@@ -130,4 +131,5 @@ t_inter	h_intersection(t_cub3d *cub)
 	if (cub->player.face == 'N')
 		inter.y--;
 	wallx_y_h(cub, &inter);
+	return (inter);
 }

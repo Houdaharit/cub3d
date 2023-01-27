@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 09:42:11 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 09:52:09 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,9 @@ int		move(int keycode, t_cub3d *cub);
 bool	if_hit_wall(t_cub3d *cub, int x, int y);
 int		key_release(int keycode, t_cub3d *cub);
 int		move_player(t_cub3d *cub);
-void	h_intersection(t_cub3d *cub);
-double	wallx_y_h(t_cub3d *cub, t_inter inter);
-void	v_intersection(t_cub3d *cub);
-double	wallx_y_v(t_cub3d *cub, t_inter inter);
+t_inter	h_intersection(t_cub3d *cub);
+double	wallx_y_h(t_cub3d *cub, t_inter *inter);
+t_inter	v_intersection(t_cub3d *cub);
+double	wallx_y_v(t_cub3d *cub, t_inter *inter);
 void	default_inter(t_inter *inter);
 #endif
