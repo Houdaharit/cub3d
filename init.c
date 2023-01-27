@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 09:41:41 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 10:23:34 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	init_ray(t_ray *ray)
 	ray->vertical = false;
 	ray->horizontal = false;
 	ray->ray_angle = 0;
+	ray->distance = 0;
 	ray->wallx = 0;
 	ray->wally = 0;
 }

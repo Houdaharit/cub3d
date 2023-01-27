@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:10:03 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 09:50:50 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 10:11:54 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	check_grid(t_cub3d cub, int x, int y, char dir)
 	return (cub.map[grid_x][grid_y] == '1');
 }
 
-double	wallx_y_h(t_cub3d *cub, t_inter *inter)
+void	wallx_y_h(t_cub3d *cub, t_inter *inter)
 {
 	while (inter->x >= 0 && inter->x <= cub->mlx.width
 		&& inter->y >= 0 && inter->y <= cub->mlx.height)
@@ -56,11 +56,10 @@ double	wallx_y_h(t_cub3d *cub, t_inter *inter)
 		inter->distance = hypot(cub->player.posx - inter->wallx,
 				cub->player.posy - inter->wally);
 	if (!inter->distance)
-		return (1e30);
-	return (inter->distance);
+		inter->distance = 1e30;
 }
 
-double	wallx_y_v(t_cub3d *cub, t_inter *inter)
+void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 {
 	while (inter->x >= 0 && inter->x <= cub->mlx.width
 		&& inter->y >= 0 && inter->y <= cub->mlx.height)
@@ -82,8 +81,7 @@ double	wallx_y_v(t_cub3d *cub, t_inter *inter)
 		inter->distance = hypot(cub->player.posx - inter->wallx,
 				cub->player.posy - inter->wally);
 	if (!inter->distance)
-		return (1e30);
-	return (inter->distance);
+		inter->distance = 1e30;
 }
 
 t_inter	v_intersection(t_cub3d *cub)
