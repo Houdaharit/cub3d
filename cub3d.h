@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 02:35:14 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 03:15:40 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_cub3d
 	t_player	player;
 	char		**map;
 	int			tile_size;
+	double		fov_angle;
 }	t_cub3d;
 
 #endif
