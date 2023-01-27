@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:10:03 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 08:42:55 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 08:54:31 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	v_intersection(t_cub3d *cub)
 	default_inter(&inter);
 	inter.x = floor(cub->player.posx / cub->tile_size) * cub->tile_size;
 	if (cub->player.face == 'E')
-		inter.x *= -1;
+		inter.x += cub->tile_size;
 	inter.y = cub->player.posy + (inter.y - cub->player.posy)
 		/ tan(cub->ray.ray_angle);
 	inter.stepx = cub->tile_size;
