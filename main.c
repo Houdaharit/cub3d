@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 11:05:05 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 11:11:58 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	init(&cub, map);
+	mlx_hook(cub.mlx.win, 2, 0, update, (void *)&cub);
 	mlx_hook(cub.mlx.win, 3, 0, key_release, (void*)&cub);
 	mlx_hook(cub.mlx.win, 17, 0, destroy, (void*)&cub);
-	mlx_hook(cub.mlx.win, 2, 0, update, (void *)&cub);
 	mlx_loop(cub.mlx.mlx);
 }
