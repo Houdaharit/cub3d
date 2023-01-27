@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 05:29:56 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 06:58:27 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct	s_cub3d
 	t_mlx		mlx;
 	t_player	player;
 	t_ray		ray;
+	t_inter		inter;
 	char		**map;
 	int			tile_size;
 	double		fov_angle;
@@ -58,9 +59,24 @@ typedef struct	s_ray
 	bool	horizontal;
 	double	wallx;
 	double	wally;
+	double	ray_angle;
 }	t_ray;
+
+typedef struct s_inter
+{
+	double	x;
+	double	y;
+	double	stepx;
+	double	stepy;
+	
+}	t_inter;
 
 void	move(int keycode, t_cu3d *cub);
 bool	if_hit_wall(t_cub3d *cub, int x, int y);
+void	key_release(int keycode, t_cub3d *cub);
 void	move_player(t_cub3d *cub);
+void	h_intersection(t_cub3d *cub);
+void	wallx_y_h(t_cub3d *cub);
+void	v_intersection(t_cub3d *cub);
+void	wallx_y_v(t_cub3d *cub);
 #endif
