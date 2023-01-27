@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 07:32:06 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 09:45:19 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ int	main(int argc, char **argv)
 		printf("please enter a valid map only !\n");
 		exit(1);
 	}
-	cub.mlx = mlx_init();
 	init(&cub, map);
-	raycasting(&cub);
-	ceils(&cub);
-	mlx_hook(cub.win, 2, 0, moves, (void *)&cub);
-	mlx_loop(cub.mlx);
+	mlx_hook(cub.mlx.win, 2, 0, move, (void *)&cub);
+	mlx_hook(cub.mlx.win, 3, 0, key_release, (void*)&cub);
+	mlx_hook(cub.mlx.win, 17, 0, destroy, (void*)&cub);
+	mlx_loop(cub.mlx.mlx);
 }

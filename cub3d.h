@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 08:11:46 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 09:42:11 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,12 @@ typedef struct s_inter
 	
 }	t_inter;
 
-void	move(int keycode, t_cub3d *cub);
+int		destroy(t_cub3d *cub);
+void	init(t_cub3d *cub, t_data map);
+int		move(int keycode, t_cub3d *cub);
 bool	if_hit_wall(t_cub3d *cub, int x, int y);
-void	key_release(int keycode, t_cub3d *cub);
-void	move_player(t_cub3d *cub);
+int		key_release(int keycode, t_cub3d *cub);
+int		move_player(t_cub3d *cub);
 void	h_intersection(t_cub3d *cub);
 double	wallx_y_h(t_cub3d *cub, t_inter inter);
 void	v_intersection(t_cub3d *cub);

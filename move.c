@@ -6,13 +6,13 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 02:05:50 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 03:38:06 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 09:43:34 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	move(int keycode, t_cub3d *cub)
+int	move(int keycode, t_cub3d *cub)
 {
 	if (keycode == 53)
 		destroy(cub);
@@ -24,9 +24,10 @@ void	move(int keycode, t_cub3d *cub)
 		cub->player.walk_dir = 1;
 	if (keycode == 125)
 		cub->player.walk_dir = -1;
+	return (1);
 }
 
-void	key_release(int keycode, t_cub3d *cub)
+int	key_release(int keycode, t_cub3d *cub)
 {
 	if (keycode == 124)
 		cub->player.turn_dir = 0;
@@ -36,6 +37,7 @@ void	key_release(int keycode, t_cub3d *cub)
 		cub->player.walk_dir = 0;
 	if (keycode == 125)
 		cub->player.walk_dir = 0;
+	return (1);
 }
 
 bool	if_hit_wall(t_cub3d *cub, int x, int y)
@@ -52,7 +54,7 @@ bool	if_hit_wall(t_cub3d *cub, int x, int y)
 	return (0);
 }
 
-void	move_player(t_cub3d *cub)
+int	move_player(t_cub3d *cub)
 {
 	double	step;
 	double	next_x;
@@ -67,4 +69,5 @@ void	move_player(t_cub3d *cub)
 		cub->player.posx = next_x;
 		cub->player.posy = next_y;
 	}
+	return (1);
 }

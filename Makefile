@@ -4,8 +4,7 @@ CC = cc
 
 CFLAGS = -Wall -Wextra
 
-SRC = main.c raycasting.c dda.c move.c minimap.c init.c init_dir.c\
-	  init_tex.c textures_calcul.c\
+SRC = main.c move.c init.c \
       parsing/parse_file.c parsing/get_next_line.c\
       parsing/get_next_line_utils.c parsing/split.c\
       parsing/more_parse.c parsing/parsing_utils.c close_win.c
