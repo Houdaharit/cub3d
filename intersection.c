@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:10:03 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 06:57:55 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 07:02:25 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	wallx_y_h(t_cub3 *cub)
 			cub->ray.horizontal = true;
 			cub->ray.wallx = cub->inter.x;
 			cub->ray.wally = cub->inter.y;
-			default_inter(&cub.inter);
 			break ;
 		}
 		else
@@ -43,7 +42,6 @@ void	wallx_y_v(t_cub3d *cub)
 		{
 			cub->ray.vertical = true;
 			cub->ray.wallx = cub->inter.x;
-			cub->ray.wally = cub->inter.y;
 			default_inter(&cub.inter);
 			break ;
 		}
