@@ -6,12 +6,19 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 09:45:19 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 11:05:05 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+int	update(int keycode, t_cub3d *cub)
+{
+	move(keycode, cub);
+	move_player(cub);
+	raycasting(cub);
+	return (1);
+}
 int	main(int argc, char **argv)
 {
 	t_cub3d	cub;
@@ -28,8 +35,8 @@ int	main(int argc, char **argv)
 		exit(1);
 	}
 	init(&cub, map);
-	mlx_hook(cub.mlx.win, 2, 0, move, (void *)&cub);
 	mlx_hook(cub.mlx.win, 3, 0, key_release, (void*)&cub);
 	mlx_hook(cub.mlx.win, 17, 0, destroy, (void*)&cub);
+	mlx_hook(cub.mlx.win, 2, 0, update, (void *)&cub);
 	mlx_loop(cub.mlx.mlx);
 }

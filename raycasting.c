@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 10:26:37 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/27 11:04:39 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ void	raycasting(t_cub3d *cub)
 	{
 		cast_ray(cub);
 		i += cub->fov_angle / cub->mlx.width;
+		//render_wall(cub);
 	}
 }
