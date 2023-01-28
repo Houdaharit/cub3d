@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/28 00:09:01 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/28 04:50:18 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,20 @@ void	init_window(t_mlx *mlx)
 	mlx->height = 800;
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "cub3d");
+	mlx->img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
+	mlx->addr = mlx_get_data_addr(mlx->img, &(mlx->bits_per_pixel),
+			&(mlx->line_length), &(mlx->endian));
+}
+
+double	rotation_angle(char direction)
+{
+	if (direction == 'N')
+		return (M_PI / 2);
+	else if (direction == 'S')
+		return ((3 * M_PI) / 2);
+	else if (direction == 'E')
+		return (0);
+	return (M_PI);
 }
 
 void	init_player(t_player *player, t_data map)
@@ -46,7 +60,7 @@ void	init_player(t_player *player, t_data map)
 	player->face = map.direction;
 	player->move_speed = 1.0;
 	player->rotation_speed = 2 * (M_PI / 180);
-	player->rot_angle = M_PI / 2;
+	player->rot_angle = rotation_angle(player->face);
 	player->turn_dir = 0;
 	player->walk_dir = 0;
 }

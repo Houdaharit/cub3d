@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/28 00:07:10 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/28 04:12:12 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,22 @@ typedef struct s_mlx
 	void	*img;
 	int		width;
 	int		height;
+	int     bits_per_pixel;
+	int     line_length;
+	int     endian;
 }	t_mlx;
 
 typedef struct s_player
 {
 	//maybe I have to change some variables' type
-	int		posx;
-	int		posy;
-	int		move_speed;
-	int		rotation_speed;
-	int		turn_dir;
-	int		walk_dir;
-	int		rot_angle;
-	char	face;
+	int			posx;
+	int			posy;
+	double		move_speed;
+	double		rotation_speed;
+	int			turn_dir;
+	int			walk_dir;
+	double		rot_angle;
+	char		face;
 }	t_player;
 
 typedef struct	s_ray
@@ -74,7 +77,7 @@ typedef struct s_inter
 	double	distance;
 	double	wallx;
 	double	wally;
-	
+
 }	t_inter;
 
 int		destroy(t_cub3d *cub);
@@ -91,4 +94,7 @@ void	cast_ray(t_cub3d *cub);
 void	raycasting(t_cub3d *cub);
 t_inter	v_intersection(t_cub3d *cub);
 t_inter	h_intersection(t_cub3d *cub);
+void    draw(t_cub3d *cub, int pixel);
+int wall_height(t_cub3d *cub);
+void    my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color);
 #endif

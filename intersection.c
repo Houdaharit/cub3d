@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 05:10:03 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 10:11:54 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/28 05:06:16 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	check_grid(t_cub3d cub, int x, int y, char dir)
 void	wallx_y_h(t_cub3d *cub, t_inter *inter)
 {
 	while (inter->x >= 0 && inter->x <= cub->mlx.width
-		&& inter->y >= 0 && inter->y <= cub->mlx.height)
+			&& inter->y >= 0 && inter->y <= cub->mlx.height)
 	{
 		if (check_grid(*cub, inter->x, inter->y, 'H'))
 		{
@@ -62,7 +62,7 @@ void	wallx_y_h(t_cub3d *cub, t_inter *inter)
 void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 {
 	while (inter->x >= 0 && inter->x <= cub->mlx.width
-		&& inter->y >= 0 && inter->y <= cub->mlx.height)
+			&& inter->y >= 0 && inter->y <= cub->mlx.height)
 	{
 		if (check_grid(*cub, inter->x, inter->y, 'V'))
 		{
