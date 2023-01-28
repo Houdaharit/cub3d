@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 23:54:25 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/28 00:12:17 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	raycasting(t_cub3d *cub)
 	float	i;
 
 	i = 0;
-	//normalize ray_angle
 	cub->ray.ray_angle = cub->player.rot_angle - (cub->fov_angle / 2);
+	cub->ray.ray_angle = normalize_angle(cub->ray.ray_angle);
 	while (i < cub->mlx.width)
 	{
 		cast_ray(cub);

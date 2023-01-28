@@ -6,11 +6,19 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 10:23:34 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/28 00:09:01 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+double	normalize_angle(double angle)
+{
+	angle = fmod(angle, 2 * M_PI);
+	if (angle < 0)
+		angle += (2 * M_PI);
+	return (angle);
+}
 
 void    default_inter(t_inter *inter)
 {

@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 10:26:27 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/28 00:07:10 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_inter
 
 int		destroy(t_cub3d *cub);
 void	init(t_cub3d *cub, t_data map);
+double	normalize_angle(double angle);
 int		move(int keycode, t_cub3d *cub);
 bool	if_hit_wall(t_cub3d *cub, int x, int y);
 int		key_release(int keycode, t_cub3d *cub);
