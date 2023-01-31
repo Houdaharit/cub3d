@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/28 04:50:18 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/31 23:35:08 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	init_player(t_player *player, t_data map)
 	player->posx = map.xPposition;
 	player->posy = map.yPposition;
 	player->face = map.direction;
-	player->move_speed = 1.0;
-	player->rotation_speed = 2 * (M_PI / 180);
+	player->move_speed = 100.0;
+	player->rotation_speed = 45 * (M_PI / 180);
 	player->rot_angle = rotation_angle(player->face);
 	player->turn_dir = 0;
 	player->walk_dir = 0;

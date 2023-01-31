@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 03:05:11 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/28 04:34:21 by hharit           ###   ########.fr       */
+/*   Updated: 2023/01/31 23:15:40 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ int	wall_strip_height(t_cub3d *cub)
 	double	distance_plane;
 
 	wall_distance = cub->ray.distance * cos(cub->ray.ray_angle - cub->player.rot_angle);
-	distance_plane = (cub->mlx.width / 2) / tan(cub->fov_angle / 2 t
-		∂)
-	//printf("%.2f\n", cub->ray.distance);
+	distance_plane = (cub->mlx.width / 2) / tan(cub->fov_angle / 2);
 	wall_strip_height = (cub->tile_size / wall_distance) * distance_plane;
 	return (wall_strip_height);
 }
