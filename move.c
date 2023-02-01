@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 02:05:50 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 01:54:08 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/01 02:43:12 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	move_player(t_cub3d *cub)
 	double	next_y;
 
 	cub->player.rot_angle += cub->player.turn_dir * cub->player.rotation_speed;
-	step = cub->player.walk_dir * cub->player.move_speed;
+	step = cub->player.walk_dir* cub->player.move_speed;
 	next_x = cub->player.posx + cos(cub->player.rot_angle) * step;
 	next_y = cub->player.posy + sin(cub->player.rot_angle) * step;
 	if (!if_hit_wall(cub, next_x, next_y))

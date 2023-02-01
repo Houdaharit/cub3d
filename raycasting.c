@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 01:30:07 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/01 03:13:39 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ void	raycasting(t_cub3d *cub)
 	i = 0;
 
 	distance_plane = (cub->mlx.width / 2) / tan(cub->fov_angle / 2);
+	cub->ray.ray_angle = cub->player.rot_angle - (cub->fov_angle / 2);
 	while (i < cub->mlx.width)
 	{
-		cub->ray.ray_angle = cub->player.rot_angle + atan((i - (cub->mlx.width / 2)) / distance_plane);
+		//cub->ray.ray_angle = cub->player.rot_angle + atan((i - (cub->mlx.width / 2)) / distance_plane);
 		cub->ray.ray_angle = normalize_angle(cub->ray.ray_angle);
 		cast_ray(cub);
 		draw(cub, i);
 		i++;
+		cub->ray.ray_angle += cub->fov_angle / cub->mlx.width; 
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 23:35:52 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 00:52:43 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/01 04:09:27 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ void	wallx_y_h(t_cub3d *cub, t_inter *inter)
 		}
 	}
 	if (inter->horizontal)
+	{
 		inter->distance = hypot(cub->player.posx - inter->wallx,
 				cub->player.posy - inter->wally);
+	}
 	if (!inter->distance)
 		inter->distance = 1e30;
 }

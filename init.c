@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 02:03:58 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/01 04:13:26 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void    default_inter(t_inter *inter)
     inter->stepy = 0;
     inter->horizontal = false;
     inter->vertical = false;
-    inter->distance = -1;
+    inter->distance = 0;
 }
 
 void	init_window(t_mlx *mlx)
 {
-	mlx->width = 800;
-	mlx->height = 800;
+	mlx->width = 34 * 32;
+	mlx->height = 15 * 32;
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "cub3d");
 	mlx->img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
@@ -55,8 +55,8 @@ double	rotation_angle(char direction)
 
 void	init_player(t_player *player, t_data map)
 {
-	player->posx = map.xPposition * 64;
-	player->posy = map.yPposition * 64;
+	player->posx = (map.xPposition * 32);
+	player->posy = (map.yPposition * 32);
 	player->face = map.direction;
 	player->move_speed = 100.0;
 	player->rotation_speed = 45 * (M_PI / 180);
@@ -68,7 +68,7 @@ void	init_player(t_player *player, t_data map)
 void	init_cub(t_cub3d *cub, t_data map)
 {
 	cub->map = map.map;
-	cub->tile_size = 64;
+	cub->tile_size = 32;
 	cub->fov_angle = 60 * (M_PI / 180);
 }
 
