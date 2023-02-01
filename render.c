@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 03:05:11 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 01:34:04 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/01 01:42:35 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void draw(t_cub3d *cub, int pixel)
 	float	wallstripheight;
 
 	wallstripheight = wall_strip_height(cub);
-	int drawstart = cub->mlx.height / 2 - (int)wallstripheight / 2;
+	int drawstart = (cub->mlx.height / 2) - ((int)wallstripheight / 2);
 	if (drawstart < 0) drawstart = 0;
-	int drawend = (int)wallstripheight / 2 + cub->mlx.height / 2;
-	if (drawend >= cub->mlx.height) drawend = cub->mlx.height;
+	int drawend = ((int)wallstripheight / 2) + (cub->mlx.height / 2);
+	if (drawend > cub->mlx.height) drawend = cub->mlx.height;
 	int i = drawstart;
 	while (i <= drawend)
 	{

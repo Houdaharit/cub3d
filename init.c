@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 01:34:49 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/01 02:03:58 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ double	rotation_angle(char direction)
 
 void	init_player(t_player *player, t_data map)
 {
-	player->posx = map.xPposition;
-	player->posy = map.yPposition;
+	player->posx = map.xPposition * 64;
+	player->posy = map.yPposition * 64;
 	player->face = map.direction;
 	player->move_speed = 100.0;
 	player->rotation_speed = 45 * (M_PI / 180);
