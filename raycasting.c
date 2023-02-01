@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/28 03:59:15 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/01 01:30:07 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	cast_ray(t_cub3d *cub)
 	t_inter inter_v;
 	t_inter	inter_h;
 
-	inter_h = h_intersection(cub);
-	inter_v = v_intersection(cub);
+	inter_h = x_y_step_hor(cub);
+	inter_v = x_y_step_ver(cub);
 	if (inter_v.distance < inter_h.distance)
 	{
 		cub->ray.vertical = true;
@@ -34,14 +34,17 @@ void	cast_ray(t_cub3d *cub)
 void	raycasting(t_cub3d *cub)
 {
 	float	i;
+	float	distance_plane;
 
 	i = 0;
-	cub->ray.ray_angle = cub->player.rot_angle - (cub->fov_angle / 2);
-	cub->ray.ray_angle = normalize_angle(cub->ray.ray_angle);
+
+	distance_plane = (cub->mlx.width / 2) / tan(cub->fov_angle / 2);
 	while (i < cub->mlx.width)
 	{
+		cub->ray.ray_angle = cub->player.rot_angle + atan((i - (cub->mlx.width / 2)) / distance_plane);
+		cub->ray.ray_angle = normalize_angle(cub->ray.ray_angle);
 		cast_ray(cub);
 		draw(cub, i);
-		i++ ;
+		i++;
 	}
 }

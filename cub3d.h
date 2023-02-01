@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/28 04:12:12 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/01 00:49:26 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,7 @@ t_inter	h_intersection(t_cub3d *cub);
 void    draw(t_cub3d *cub, int pixel);
 int wall_height(t_cub3d *cub);
 void    my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color);
+int check_grid(t_cub3d cub, int x, int y, char dir);
+t_inter	x_y_step_ver(t_cub3d *cub);
+t_inter	x_y_step_hor(t_cub3d *cub);
 #endif
