@@ -37,7 +37,6 @@ void	wallx_y_h(t_cub3d *cub, t_inter *inter)
 	}
 	if (!inter->distance)
 		inter->distance = 1e30;
-	//printf("%.2f %.2f\n", inter->x, inter->y);
 }
 
 t_inter	hor_first_inter(t_cub3d *cub)

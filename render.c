@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-int	wall_strip_height(t_cub3d *cub)
+float	wall_strip_height(t_cub3d *cub)
 {
 	double	wall_strip_height;
 	double	wall_distance;
@@ -43,10 +43,11 @@ void draw(t_cub3d *cub, int pixel)
 	int drawend = ((int)wallstripheight / 2) + (cub->mlx.height / 2);
 	if (drawend > cub->mlx.height) drawend = cub->mlx.height;
 	int i = drawstart;
+	//printf("start: %d\t end: %d\n", drawstart, drawend);
 	while (i <= drawend)
 	{
-	//	my_mlx_pixel_put(cub, pixel, i, color);
+		my_mlx_pixel_put(cub, pixel, i, color);
 		i++;
 	}
-	//mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->mlx.img, 0, 0);
+	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->mlx.img, 0, 0);
 }

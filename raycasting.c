@@ -39,6 +39,7 @@ void	raycasting(t_cub3d *cub)
 	i = 0;
 
 	//	distance_plane = (cub->mlx.width / 2) / tan(cub->fov_angle / 2);
+	cub->ray.ray_angle = cub->player.rot_angle - (cub->fov_angle / 2);
 	while (i < cub->mlx.width)
 	{
 		//cub->ray.ray_angle = cub->player.rot_angle + atan((i - (cub->mlx.width / 2)) / distance_plane);
