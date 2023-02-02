@@ -17,7 +17,7 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -lmlx -framework OpenGL -framework appKit -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) -lm
 
 clean:
 	rm -rf $(OBJ)

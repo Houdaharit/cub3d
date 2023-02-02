@@ -68,9 +68,9 @@ int	move_player(t_cub3d *cub)
 	{
 		cub->player.posx = next_x;
 		cub->player.posy = next_y;
-		cub-> mlx.img = mlx_new_image(cub->mlx.mlx, cub->mlx.width, cub->mlx.height);
+/*		cub-> mlx.img = mlx_new_image(cub->mlx.mlx, cub->mlx.width, cub->mlx.height);
 		cub->mlx.addr = mlx_get_data_addr(cub->mlx.img, &(cub->mlx.bits_per_pixel),
-				&(cub->mlx.line_length), &(cub->mlx.endian));
+				&(cub->mlx.line_length), &(cub->mlx.endian));*/
 	}
 	return (1);
 }

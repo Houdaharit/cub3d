@@ -1,7 +1,7 @@
-NO /Users/hharit/Desktop/cub3d/textures/greenlight.xpm
-SO /Users/hharit/Desktop/cub3d/textures/purplestone.xpm
-WE /Users/hharit/Desktop/cub3d/textures/bluestone.xpm
-EA /Users/hharit/Desktop/cub3d/textures/eagle.xpm
+NO /home/harit/Desktop/cub3d/textures/greenlight.xpm
+SO /home/harit/Desktop/cub3d/textures/purplestone.xpm
+WE /home/harit/Desktop/cub3d/textures/bluestone.xpm
+EA /home/harit/Desktop/cub3d/textures/eagle.xpm
 
 F 220,400,0
 C 225,30,0
@@ -17,6 +17,6 @@ C 225,30,0
 11000000110101011100000010001
 10000000000000001100000010001
 10000000000000001101010010001
-110000001101010111110111100S11
+110000001101010111110111100N11
 11110111 1110101 101111010001
 11111111 1111111 111111111111

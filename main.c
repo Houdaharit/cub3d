@@ -36,8 +36,8 @@ int	main(int argc, char **argv)
 	}
 	init(&cub, map);
 	raycasting(&cub);
-	mlx_hook(cub.mlx.win, 2, 0, update, (void *)&cub);
+/*	mlx_hook(cub.mlx.win, 2, 0, update, (void *)&cub);
 	mlx_hook(cub.mlx.win, 3, 0, key_release, (void*)&cub);
 	mlx_hook(cub.mlx.win, 17, 0, destroy, (void*)&cub);
-	mlx_loop(cub.mlx.mlx);
+	mlx_loop(cub.mlx.mlx);*/
 }

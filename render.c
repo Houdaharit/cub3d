@@ -45,8 +45,8 @@ void draw(t_cub3d *cub, int pixel)
 	int i = drawstart;
 	while (i <= drawend)
 	{
-		my_mlx_pixel_put(cub, pixel, i, color);
+	//	my_mlx_pixel_put(cub, pixel, i, color);
 		i++;
 	}
-	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->mlx.img, 0, 0);
+	//mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->mlx.img, 0, 0);
 }

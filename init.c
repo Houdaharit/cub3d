@@ -35,11 +35,11 @@ void	init_window(t_mlx *mlx)
 {
 	mlx->width = 34 * 32;
 	mlx->height = 15 * 32;
-	mlx->mlx = mlx_init();
+/*	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "cub3d");
 	mlx->img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
 	mlx->addr = mlx_get_data_addr(mlx->img, &(mlx->bits_per_pixel),
-			&(mlx->line_length), &(mlx->endian));
+			&(mlx->line_length), &(mlx->endian));*/
 }
 
 double	rotation_angle(char direction)
@@ -55,8 +55,9 @@ double	rotation_angle(char direction)
 
 void	init_player(t_player *player, t_data map)
 {
-	player->posx = (map.xPposition * 32);
-	player->posy = (map.yPposition * 32);
+	player->posx = map.xPposition * 32;
+	player->posy = map.yPposition * 32;
+	printf("posx: %d posy: %d\n", player->posx, player->posy);
 	player->face = map.direction;
 	player->move_speed = 100.0;
 	player->rotation_speed = 45 * (M_PI / 180);
