@@ -43,7 +43,7 @@ void draw(t_cub3d *cub, int pixel)
 	int drawend = ((int)wallstripheight / 2) + (cub->mlx.height / 2);
 	if (drawend > cub->mlx.height) drawend = cub->mlx.height;
 	int i = drawstart;
-	//printf("start: %d\t end: %d\n", drawstart, drawend);
+//	printf("start: %d\t end: %d\n", drawstart, drawend);
 	while (i <= drawend)
 	{
 		my_mlx_pixel_put(cub, pixel, i, color);

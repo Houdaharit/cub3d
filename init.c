@@ -55,8 +55,8 @@ double	rotation_angle(char direction)
 
 void	init_player(t_player *player, t_data map)
 {
-	player->posx = map.xPposition * 32;
-	player->posy = map.yPposition * 32;
+	player->posx = map.yPposition * 32;
+	player->posy = map.xPposition * 32;
 	player->face = map.direction;
 	player->move_speed = 100.0;
 	player->rotation_speed = 45 * (M_PI / 180);
