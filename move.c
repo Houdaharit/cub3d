@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 02:05:50 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 02:43:12 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/03 16:13:21 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int	move_player(t_cub3d *cub)
 	{
 		cub->player.posx = next_x;
 		cub->player.posy = next_y;
-/*		cub-> mlx.img = mlx_new_image(cub->mlx.mlx, cub->mlx.width, cub->mlx.height);
+		cub-> mlx.img = mlx_new_image(cub->mlx.mlx, cub->mlx.width, cub->mlx.height);
 		cub->mlx.addr = mlx_get_data_addr(cub->mlx.img, &(cub->mlx.bits_per_pixel),
-				&(cub->mlx.line_length), &(cub->mlx.endian));*/
+				&(cub->mlx.line_length), &(cub->mlx.endian));
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 02:00:34 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/03 18:05:36 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	update(int keycode, t_cub3d *cub)
 {
 	move(keycode, cub);
 	move_player(cub);
-	raycasting(cub);
+//	raycasting(cub);
 	return (1);
 }
 int	main(int argc, char **argv)

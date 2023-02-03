@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 04:13:26 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/03 20:01:17 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void    default_inter(t_inter *inter)
 
 void	init_window(t_mlx *mlx)
 {
-	mlx->width = 15 * 32;
-	mlx->height = 34 * 32;
+	mlx->width = 33 * 32;
+	mlx->height = 14 * 32;
 	mlx->mlx = mlx_init();
 	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "cub3d");
 	mlx->img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
@@ -45,9 +45,9 @@ void	init_window(t_mlx *mlx)
 double	rotation_angle(char direction)
 {
 	if (direction == 'N')
-		return (M_PI / 2);
+		return (M_PI_2);
 	else if (direction == 'S')
-		return ((3 * M_PI) / 2);
+		return (1.5 * M_PI);
 	else if (direction == 'E')
 		return (0);
 	return (M_PI);

@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 00:19:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 04:09:50 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/03 19:47:18 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 	while (inter->x >= 0 && inter->x <= cub->mlx.width
 		&& inter->y >= 0 && inter->y <= cub->mlx.height)
 	{
+		//printf("%c\n", cub->map[(int)floor(inter->y / 32)][(int)floor(inter->x / 32)]);
+		printf("x: %.f\t y: %.f\n", floor(inter->x / 32),floor(inter->y / 32) );
 		if (check_grid(*cub, inter->x, inter->y, 'V'))
 		{
 			inter->vertical = true;

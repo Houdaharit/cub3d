@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 02:33:54 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/03 18:54:38 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <math.h>
 # include <stdlib.h>
 # include <stdbool.h>
+# include <limits.h>
 # include "parsing/parsing.h"
 
 typedef struct s_mlx

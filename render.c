@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 03:05:11 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/01 04:13:58 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/03 19:59:38 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,15 @@ void draw(t_cub3d *cub, int pixel)
 	int drawstart = (cub->mlx.height / 2) - ((int)wallstripheight / 2);
 	if (drawstart < 0) drawstart = 0;
 	int drawend = ((int)wallstripheight / 2) + (cub->mlx.height / 2);
-	if (drawend > cub->mlx.height) drawend = cub->mlx.height;
+	printf("start: %d\t end: %d\n", drawstart, drawend);
+	if (drawend > cub->mlx.height) drawend = cub->mlx.height - 1;
 	int i = drawstart;
-//	printf("start: %d\t end: %d\n", drawstart, drawend);
+	if (cub->ray.vertical)
+		color = 0x000FFFF;
+		//printf("drawend: %d\n", drawend);
 	while (i <= drawend)
 	{
+		//printf("Draw %d\n", i);
 		my_mlx_pixel_put(cub, pixel, i, color);
 		i++;
 	}
