@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 00:42:07 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/07 20:58:24 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/07 21:09:58 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	dda(t_cub3d *cub)
 {
 	/*delta_x_y(cub);
-	dist_x_y(cub);*/
+	dist_x_y(cub);
 	while (cub->map[cub->x][cub->y] != '1')
 	{
 		if (cub->dx < cub->dy)
