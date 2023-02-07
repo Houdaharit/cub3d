@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/03 19:53:40 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/07 17:56:11 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	raycasting(t_cub3d *cub)
 	//	printf("i: %d\n", i);
 		cub->ray.ray_angle = normalize_angle(cub->ray.ray_angle);
 		cast_ray(cub);
-		printf("HERE %d\n", i);
 		draw(cub, i);
 		i++;
 		cub->ray.ray_angle += cub->fov_angle / cub->mlx.width; 

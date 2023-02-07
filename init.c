@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/03 20:01:17 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:37:07 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	normalize_angle(double angle)
 {
-	angle = fmod(angle, 2 * M_PI);
+	angle = remainder(angle, 2 * M_PI);
 	if (angle < 0)
 		angle += (2 * M_PI);
 	return (angle);
@@ -55,8 +55,8 @@ double	rotation_angle(char direction)
 
 void	init_player(t_player *player, t_data map)
 {
-	player->posx = map.yPposition * 32;
-	player->posy = map.xPposition * 32;
+	player->posx = map.yPposition;
+	player->posy = map.xPposition;
 	player->face = map.direction;
 	player->move_speed = 100.0;
 	player->rotation_speed = 45 * (M_PI / 180);

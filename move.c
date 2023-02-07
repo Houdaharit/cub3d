@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 02:05:50 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/03 16:13:21 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/07 18:22:01 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ bool	if_hit_wall(t_cub3d *cub, int x, int y)
 	{
 		x = floor(x / cub->tile_size);
 		y = floor(y / cub->tile_size);
-		if (cub->map[x][y] == '1')
+		if (cub->map[y][x] == '1')
 			return (1);
 	}
 	return (0);
