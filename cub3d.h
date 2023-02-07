@@ -6,7 +6,7 @@
 /*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/25 00:55:41 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/07 23:51:56 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,20 @@
 
 typedef struct s_cub3d
 {
-    void    *mlx;
-    void    *win;
-    void    *img;
+	void    *mlx;
+	void    *win;
+	void    *img;
 	void 	*walls;
+	void	*minimap;
 	void	*player;
-    void		*addr;
-    int     bits_per_pixel;
-    int     line_length;
-    int     endian;
+	int		*addr;
+	int     bits_per_pixel;
+	int     line_length;
+	int     endian;
+	void		*addr1;
+	int     bits_per_pixel1;
+	int     line_length1;
+	int     endian1;
 	double	width;
 	double	height;	
 	double	posx;
@@ -60,8 +65,11 @@ typedef struct s_cub3d
 	int		**textures;
 	int		tex_width;
 	int		tex_height;
+	int		img_width_m;
+	int		img_height_m;
 	int		img_width;
 	int		img_height;
+
 }t_cub3d;
 
 int		destroy(t_cub3d *cub);
