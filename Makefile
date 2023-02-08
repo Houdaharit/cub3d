@@ -16,8 +16,9 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(SRC) -lmlx -framework OpenGL -framework appKit -o $(NAME)
-
+	$(CC) $(CFLAGS) $(OBJ) -L /usr/X11/lib -lmlx -framework OpenGL -framework appKit -o $(NAME)
+%.o:%.c
+	$(CC) $(CFLAGS) -I /usr/X11/include -c $< -o $@
 clean:
 	rm -rf $(OBJ)
 

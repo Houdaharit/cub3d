@@ -24,7 +24,7 @@ void	init(t_cub3d *cub, t_data map)
 	cub->diry = 0;
 	cub->planex = 0;
 	cub->planey = 0.66;
-	cub->rotspeed = 0.8;
+	cub->rotspeed = 0.5;
 	cub->movespeed = 1.5;
 	cub->win = mlx_new_window(cub->mlx, cub->width, cub->height, "cub3d");
    	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);

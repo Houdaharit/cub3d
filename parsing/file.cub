@@ -1,7 +1,7 @@
-NO /Users/hharit/Desktop/cub3d
-SO /Users/hharit/Desktop/cub3d
-WE /Users/hharit/Desktop
-EA /Users/hharit
+NO /tmp
+SO /tmp
+WE /tmp
+EA /tmp
 
 F 220,400,0
 C 225,30,0

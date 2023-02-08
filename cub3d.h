@@ -26,7 +26,7 @@ typedef struct s_cub3d
 	void 	*walls;
 	void	*minimap;
 	void	*player;
-	int		*addr;
+	void		*addr;
 	int     bits_per_pixel;
 	int     line_length;
 	int     endian;
