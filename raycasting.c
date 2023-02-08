@@ -28,29 +28,34 @@ int get_pixel(t_cub3d *fr, int x, int y)
 	return *(int*)dst;
 }
 
-void	x_hit_wall(t_cub3d *cub)
+void	x_hit_wall(t_cub3d *cub, int x, int y)
 {
+	double	perpdistwall;
+
+	perpdistwall = dda(cub, x, y);
 	if (!cub->side)
-		cub->wallx = cub->posy + cub->perpdistwall * cub->raydiry;
+		cub->wallx = cub->posy + perpdistwall * cub->raydiry;
 	else
-		cub->wallx = cub->posx + cub->perpdistwall * cub->raydirx;
+		cub->wallx = cub->posx + perpdistwall * cub->raydirx;
 	cub->wallx -= (int)cub->wallx;
-	draw(cub);
+	draw(cub,perpdistwall);
 }
 
-void	draw(t_cub3d *cub)
+void	draw(t_cub3d *cub, double perpdistwall)
 {
 	//int	offsetx;
 	//int	offsety;
+	int	line_height;
 
 	int	color = 0x0000FF;
-	int drawstart = 0.5 * (cub->height - cub->line_height);
+	line_height = HEIGHT / perpdistwall;
+	int drawstart = 0.5 * (HEIGHT - line_height);
 	if (drawstart < 0) drawstart = 0;
-	int drawend = 0.5 * (cub->line_height + cub->height);
-	if (drawend >= cub->height) drawend = cub->height - 1;
+	int drawend = 0.5 * (line_height + HEIGHT);
+	if (drawend >= HEIGHT) drawend = HEIGHT - 1;
 	int i = drawstart;
 	if (cub->side == 1)
-	color *= 0.5;
+		color *= 0.5;
 	while (i <= drawend)
 	{
 		//offsety = (i + (cub->line_height * 0.5) - cub->height * 0.5) * (64/ cub->line_height);
@@ -64,16 +69,15 @@ int	raycasting(t_cub3d *cub)
 {
 	double	width_2;
 
-	width_2 = 2 / cub->width;
+	width_2 = 2 / WIDTH;
 	cub->pixel = 0;
-	while (cub->pixel < cub->width)
+	while (cub->pixel < WIDTH)
 	{
 		cub->camerax = cub->pixel * width_2 - 1;
 		cub->raydirx = cub->dirx + cub->planex * cub->camerax;
 		cub->raydiry = cub->diry + cub->planey * cub->camerax;
 		delta_x_y(cub);
-		dist_x_y(cub);
-		dda(cub);
+		x_hit_wall(cub, (int)cub->posx, (int)cub->posy);
 		cub->pixel++;
 	}
 	return 1;

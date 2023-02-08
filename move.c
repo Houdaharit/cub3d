@@ -15,7 +15,7 @@ void	free_image(t_cub3d *cub)
 	  }
 	  i++;
 	  }*/
-	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
+	cub->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	cub->addr = (int *)mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
 			&(cub->line_length), &(cub->endian));
 }

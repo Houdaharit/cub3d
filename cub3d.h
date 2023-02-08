@@ -18,6 +18,9 @@
 # include <stdlib.h>
 # include "parsing/parsing.h"
 
+# define WIDTH 800
+#define HEIGHT 800
+
 typedef struct s_cub3d
 {
 	void    *mlx;
@@ -34,8 +37,6 @@ typedef struct s_cub3d
 	int     bits_per_pixel1;
 	int     line_length1;
 	int     endian1;
-	double	width;
-	double	height;	
 	double	posx;
 	double	posy;
 	double	dirx;
@@ -44,10 +45,6 @@ typedef struct s_cub3d
 	double	planey;
 	double	raydirx;
 	double	raydiry;
-	double	dx;
-	double	dy;
-	int		x;
-	int		y;
 	double	deltax;
 	double	deltay;
 	int		stepx;
@@ -75,13 +72,12 @@ typedef struct s_cub3d
 int		destroy(t_cub3d *cub);
 int		ft_close(int keycode, t_cub3d *cub);
 int		raycasting(t_cub3d *cub);
-void	dda(t_cub3d *cub);
-void	x_hit_wall(t_cub3d *cub);
-void	draw(t_cub3d *cub);
+double	dda(t_cub3d *cub, int x, int y);
+void	x_hit_wall(t_cub3d *cub, int x, int y);
 void	my_mlx_pixel_put(t_cub3d*, int, int, int);
 int		moves(int keycode, t_cub3d *cub);
 void    delta_x_y(t_cub3d *cub);
-void	dist_x_y(t_cub3d *cub);
-void	draw(t_cub3d *cub);
+void	dist_x_y(t_cub3d *cub, double *d, int x, int y);
+void	draw(t_cub3d *cub, double perpdistwall);
 void    ceils(t_cub3d *cub);
 #endif

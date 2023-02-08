@@ -15,8 +15,6 @@
 void	init(t_cub3d *cub, t_data map)
 {
     int img_width, img_height;
-	cub->width = 800;
-	cub->height = 800;
 	cub->map = map.map;
 	cub->posx = map.xPposition;
 	cub->posy = map.yPposition;
@@ -26,8 +24,8 @@ void	init(t_cub3d *cub, t_data map)
 	cub->planey = 0.66;
 	cub->rotspeed = 0.5;
 	cub->movespeed = 1.5;
-	cub->win = mlx_new_window(cub->mlx, cub->width, cub->height, "cub3d");
-   	cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
+	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
+   	cub->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	cub->addr = (int *)mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
 			&(cub->line_length), &(cub->endian));
     cub->player = mlx_xpm_file_to_image(cub->mlx, "./red.xpm", (int*)&cub->img_width_m, (int*)&cub->img_height_m);
@@ -43,14 +41,14 @@ void	init_buffer(t_cub3d *cub)
 	int	i;
 	int	max;
 
-	max = cub->height * cub->width;
+	max = HEIGHT * WIDTH;
 	//cub->buffer = (int**)malloc(sizeof(int*) * cub->height);
 	i = 0;
-	while (i < cub->height)
+	while (i < HEIGHT)
 	{
 		//	cub->buffer[i] = (int*)malloc(sizeof(int) * cub->height * cub->width);
 		j = 0;
-		while (j < cub->width)
+		while (j < WIDTH)
 		{
 			cub->buffer[i][j] = 0;
 			j++;
@@ -59,7 +57,7 @@ void	init_buffer(t_cub3d *cub)
 	}
 }
 
-void	init_textures(t_cub3d *cub)
+/*void	init_textures(t_cub3d *cub)
 {
 	int	j;
 	int max;
@@ -76,6 +74,7 @@ void	init_textures(t_cub3d *cub)
 		j++;
 	}
 }
+*/
 int	main(int argc, char **argv)
 {
 	t_cub3d	cub;
@@ -93,7 +92,7 @@ int	main(int argc, char **argv)
 	}
 	cub.mlx = mlx_init();
 	init(&cub, map);
-	init_textures(&cub);
+	//init_textures(&cub);
 	ceils(&cub);
 	raycasting(&cub);
 	mlx_hook(cub.win, 2, 0, moves, (void *)&cub);

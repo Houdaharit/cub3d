@@ -12,57 +12,55 @@
 
 #include "cub3d.h"
 
-void	dda(t_cub3d *cub)
+double	dda(t_cub3d *cub, int x, int y)
 {
-	/*delta_x_y(cub);
-	dist_x_y(cub);*/
-	while (cub->map[cub->x][cub->y] != '1')
+	double	d[2];
+
+	dist_x_y(cub, d, x, y);
+	while (1)
 	{
-		if (cub->dx < cub->dy)
+		if (d[0] < d[1])
 		{
-			cub->dx += cub->deltax;
-			cub->x += cub->stepx;
+			d[0] += cub->deltax;
+			x += cub->stepx;
 			cub->side = 0;
 		}
 		else
 		{
-			cub->dy += cub->deltay;
-			cub->y += cub->stepy;
+			d[1] += cub->deltay;
+			y += cub->stepy;
 			cub->side = 1;
 		}
+		if (cub->map[x][y] == '1')
+			break;
 	}
 	if (cub->side == 0)
-		cub->perpdistwall = cub->dx - cub->deltax;
-	else
-		cub->perpdistwall = cub->dy - cub->deltay;
-	cub->line_height = (int)(cub->height / cub->perpdistwall);
-	x_hit_wall(cub);
+		return cub->perpdistwall = d[0] - cub->deltax;
+	return cub->perpdistwall = d[1] - cub->deltay;
 }
 
-void	dist_x_y(t_cub3d *cub)
+void	dist_x_y(t_cub3d *cub, double *d, int x, int y)
 {
-	
-	cub->x = (int)cub->posx;
-	cub->y = (int)cub->posy;
+
 	if (cub->raydirx < 0)
 	{
 		cub->stepx = -1;
-		cub->dx = (cub->posx - cub->x) * cub->deltax;
+		d[0] = (cub->posx - x) * cub->deltax;
 	}
 	else
 	{
 		cub->stepx = 1;
-		cub->dx = (cub->x + 1.0 - cub->posx) * cub->deltax;
+		d[0] = (x + 1.0 - cub->posx) * cub->deltax;
 	}
 	if (cub->raydiry < 0)
 	{
 		cub->stepy = -1;
-		cub->dy = (cub->posy - cub->y) * cub->deltay;
+		d[1] = (cub->posy - y) * cub->deltay;
 	}
 	else
 	{
 		cub->stepy = 1;
-		cub->dy = (cub->y + 1.0 - cub->posy) * cub->deltay;
+		d[1] = (y + 1.0 - cub->posy) * cub->deltay;
 	}
 }
 
