@@ -17,8 +17,7 @@ void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 	while (inter->x >= 0 && inter->x <= cub->mlx.width
 		&& inter->y >= 0 && inter->y <= cub->mlx.height)
 	{
-		//printf("%c\n", cub->map[(int)floor(inter->y / 32)][(int)floor(inter->x / 32)]);
-		if (check_grid(*cub, inter->x, inter->y, 'V'))
+		if (check_grid(*cub, inter->x, inter->y + inter->index_v))
 		{
 			inter->vertical = true;
 			inter->wallx = inter->x;
@@ -35,7 +34,6 @@ void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 	{
 		inter->distance = hypot(inter->wallx - cub->player.posx ,
 				inter->wally - cub->player.posy);
-		printf("distance v: %f\n", inter->distance);
 	}
 	if (!inter->distance)
 		inter->distance = 1e30;
@@ -49,6 +47,8 @@ t_inter	v_first_inter(t_cub3d *cub)
 	inter.x = floor(cub->player.posx / cub->tile_size) * cub->tile_size;
 	if (cub->ray.ray_angle < M_PI_2 || cub->ray.ray_angle > 3 * M_PI_2)
 		inter.y += cub->tile_size;
+	else
+		inter.index_v = -1;
 	inter.y = cub->player.posy + (inter.x - cub->player.posy)
 		/ tan(cub->ray.ray_angle);
 	return (inter);

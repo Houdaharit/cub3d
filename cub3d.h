@@ -78,6 +78,8 @@ typedef struct s_inter
 	double	distance;
 	double	wallx;
 	double	wally;
+	int	index_v;
+	int	index_h;
 
 }	t_inter;
 
@@ -98,7 +100,7 @@ t_inter	h_intersection(t_cub3d *cub);
 void    draw(t_cub3d *cub, int pixel);
 int wall_height(t_cub3d *cub);
 void    my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color);
-int check_grid(t_cub3d cub, int x, int y, char dir);
+int check_grid(t_cub3d cub, int x, int y);
 t_inter	x_y_step_ver(t_cub3d *cub);
 t_inter	x_y_step_hor(t_cub3d *cub);
 #endif

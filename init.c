@@ -29,6 +29,8 @@ void    default_inter(t_inter *inter)
     inter->horizontal = false;
     inter->vertical = false;
     inter->distance = 0;
+    inter->index_v = 0;
+    inter->index_h = 0;
 }
 
 void	init_window(t_mlx *mlx)

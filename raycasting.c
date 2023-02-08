@@ -18,9 +18,7 @@ void	cast_ray(t_cub3d *cub)
 	t_inter	inter_h;
 
 	inter_h = x_y_step_hor(cub);
-	printf("H\n");
 	inter_v = x_y_step_ver(cub);
-	printf("V\n");
 	if (inter_v.distance < inter_h.distance)
 	{
 		cub->ray.vertical = true;

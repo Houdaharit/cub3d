@@ -16,7 +16,7 @@ int	update(int keycode, t_cub3d *cub)
 {
 	move(keycode, cub);
 	move_player(cub);
-//	raycasting(cub);
+	raycasting(cub);
 	return (1);
 }
 int	main(int argc, char **argv)
