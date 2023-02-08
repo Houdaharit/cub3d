@@ -14,21 +14,27 @@
 
 void	wallx_y_h(t_cub3d *cub, t_inter *inter)
 {
-	while (inter->x >= 0 && inter->x <= cub->mlx.width
-			&& inter->y >= 0 && inter->y <= cub->mlx.height)
+	while (1)
 	{
-		if (check_grid(*cub, inter->x, inter->y + inter->index_h))
+		if(inter->x >= 0 && inter->x <= cub->width
+				&& inter->y >= 0 && inter->y <= cub->height)
 		{
-			inter->horizontal = true;
+			if (check_grid(*cub, inter->x, inter->y + inter->index_h) == 1)
+			{
+				inter->horizontal = true;
+				break ;
+			}
+			else
+			{
+				inter->x += inter->stepx;
+				inter->y += inter->stepy;
+			}
 			inter->wallx = inter->x;
 			inter->wally = inter->y;
-			break ;
+
 		}
 		else
-		{
-			inter->x += inter->stepx;
-			inter->y += inter->stepy;
-		}
+			break;
 	}
 	if (inter->horizontal)
 	{

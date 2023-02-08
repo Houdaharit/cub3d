@@ -42,7 +42,7 @@ int	key_release(int keycode, t_cub3d *cub)
 
 bool	if_hit_wall(t_cub3d *cub, int x, int y)
 {
-	if (x < 0 || x > cub->mlx.width || y < 0 || y > cub->mlx.height)
+	if (x < 0 || x > cub->width || y < 0 || y > cub->height)
 		return (1);
 	else
 	{
@@ -68,9 +68,9 @@ int	move_player(t_cub3d *cub)
 	{
 		cub->player.posx = next_x;
 		cub->player.posy = next_y;
-		cub-> mlx.img = mlx_new_image(cub->mlx.mlx, cub->mlx.width, cub->mlx.height);
-		cub->mlx.addr = mlx_get_data_addr(cub->mlx.img, &(cub->mlx.bits_per_pixel),
-				&(cub->mlx.line_length), &(cub->mlx.endian));
+		cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
+		cub->addr = mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
+				&(cub->line_length), &(cub->endian));
 	}
 	return (1);
 }

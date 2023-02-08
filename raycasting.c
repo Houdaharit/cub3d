@@ -42,13 +42,12 @@ void	raycasting(t_cub3d *cub)
 
 	i = 0;
 	cub->ray.ray_angle = cub->player.rot_angle - (cub->fov_angle / 2);
-	while (i < cub->mlx.width)
+	while (i < WIDTH)
 	{
-	//	printf("i: %d\n", i);
 		cub->ray.ray_angle = normalize_angle(cub->ray.ray_angle);
 		cast_ray(cub);
 		draw(cub, i);
 		i++;
-		cub->ray.ray_angle += cub->fov_angle / cub->mlx.width; 
+		cub->ray.ray_angle += cub->fov_angle / WIDTH; 
 	}
 }

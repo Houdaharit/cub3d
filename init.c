@@ -22,26 +22,26 @@ double	normalize_angle(double angle)
 
 void    default_inter(t_inter *inter)
 {
-    inter->x = 0;
-    inter->y = 0;
-    inter->stepx = 0;
-    inter->stepy = 0;
-    inter->horizontal = false;
-    inter->vertical = false;
-    inter->distance = 0;
-    inter->index_v = 0;
-    inter->index_h = 0;
+	inter->x = 0;
+	inter->y = 0;
+	inter->stepx = 0;
+	inter->stepy = 0;
+	inter->horizontal = false;
+	inter->vertical = false;
+	inter->distance = 0;
+	inter->index_v = 0;
+	inter->index_h = 0;
 }
 
-void	init_window(t_mlx *mlx)
+void	init_window(t_cub3d *cub)
 {
-	mlx->width = 33 * 32;
-	mlx->height = 14 * 32;
-	mlx->mlx = mlx_init();
-	mlx->win = mlx_new_window(mlx->mlx, mlx->width, mlx->height, "cub3d");
-	mlx->img = mlx_new_image(mlx->mlx, mlx->width, mlx->height);
-	mlx->addr = mlx_get_data_addr(mlx->img, &(mlx->bits_per_pixel),
-			&(mlx->line_length), &(mlx->endian));
+	cub->width = 33 * 32;
+	cub->height = 14 * 32;
+	cub->mlx = mlx_init();
+	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
+	cub->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	cub->addr = mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
+			&(cub->line_length), &(cub->endian));
 }
 
 double	rotation_angle(char direction)
@@ -86,8 +86,8 @@ void	init_ray(t_ray *ray)
 
 void	init(t_cub3d *cub, t_data map)
 {
-	init_window(&cub->mlx);
 	init_cub(cub, map);
+	init_window(cub);
 	init_player(&cub->player, map);
 	init_ray(&cub->ray);
 }

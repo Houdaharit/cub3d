@@ -14,21 +14,26 @@
 
 void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 {
-	while (inter->x >= 0 && inter->x <= cub->mlx.width
-		&& inter->y >= 0 && inter->y <= cub->mlx.height)
+	while (1)
 	{
-		if (check_grid(*cub, inter->x, inter->y + inter->index_v))
+		if (inter->x >= 0 && inter->x <= cub->width
+				&& inter->y >= 0 && inter->y <= cub->height)
 		{
-			inter->vertical = true;
+			if (check_grid(*cub, inter->x, inter->y + inter->index_v) == 1)
+			{
+				inter->vertical = true;
+				break ;
+			}
+			else
+			{
+				inter->x += inter->stepx;
+				inter->y += inter->stepy;
+			}
 			inter->wallx = inter->x;
 			inter->wally = inter->y;
-			break ;
 		}
 		else
-		{
-			inter->x += inter->stepx;
-			inter->y += inter->stepy;
-		}
+			break;
 	}
 	if (inter->vertical)
 	{
@@ -64,7 +69,7 @@ t_inter	x_y_step_ver(t_cub3d *cub)
 		inter.stepx *= -1;
 	inter.stepy = inter.stepx * tan(cub->ray.ray_angle);
 	if (!(cub->ray.ray_angle > 0 && cub->ray.ray_angle < M_PI) && \
-		inter.stepy > 0)
+			inter.stepy > 0)
 		inter.stepy *= -1;
 	if (cub->ray.ray_angle > 0 && cub->ray.ray_angle < M_PI && inter.stepy < 0)
 		inter.stepy *= -1;

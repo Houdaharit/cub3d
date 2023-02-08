@@ -20,6 +20,9 @@
 # include <limits.h>
 # include "parsing/parsing.h"
 
+#define	WIDTH 1600
+#define HEIGHT 1000
+
 typedef struct s_mlx
 {
 	void	*mlx;
@@ -58,7 +61,15 @@ typedef struct	s_ray
 
 typedef struct	s_cub3d
 {
-	t_mlx		mlx;
+	void	*mlx;
+	void	*win;
+	void	*addr;
+	void	*img;
+	int		width;
+	int		height;
+	int     bits_per_pixel;
+	int     line_length;
+	int     endian;
 	t_player	player;
 	t_ray		ray;
 	char		**map;

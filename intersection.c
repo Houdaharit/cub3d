@@ -17,8 +17,8 @@ int	check_grid(t_cub3d cub, int x, int y)
 	int	grid_x;
 	int	grid_y;
 
-	if (x < 0 || x > cub.mlx.width || y < 0 || y > cub.mlx.height)
-		return (1);
+	if (x < 0 || x > cub.width || y < 0 || y > cub.height)
+		return (2);
 	grid_x = floor(x / cub.tile_size);
 	grid_y = floor(y / cub.tile_size);
 	return (cub.map[grid_y][grid_x] == '1');

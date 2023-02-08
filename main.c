@@ -21,7 +21,7 @@ int	update(int keycode, t_cub3d *cub)
 }
 int	main(int argc, char **argv)
 {
-	t_cub3d	cub;
+	t_cub3d	*cub = NULL;
 	t_data map;
 
 	if (argc == 2)
@@ -34,10 +34,11 @@ int	main(int argc, char **argv)
 		printf("please enter a valid map only !\n");
 		exit(1);
 	}
-	init(&cub, map);
-	raycasting(&cub);
-	mlx_hook(cub.mlx.win, 2, 0, update, (void *)&cub);
-	mlx_hook(cub.mlx.win, 3, 0, key_release, (void*)&cub);
-	mlx_hook(cub.mlx.win, 17, 0, destroy, (void*)&cub);
-	mlx_loop(cub.mlx.mlx);
+	cub = malloc(sizeof(t_cub3d));
+	init(cub, map);
+	raycasting(cub);
+	mlx_hook(cub->win, 2, 0, update, (void *)cub);
+	mlx_hook(cub->win, 3, 0, key_release, (void*)cub);
+	mlx_hook(cub->win, 17, 0, destroy, (void*)cub);
+	mlx_loop(cub->mlx);
 }

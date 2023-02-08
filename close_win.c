@@ -15,7 +15,7 @@
 int	destroy(t_cub3d *cub)
 {
 	//mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
-	free(cub->mlx.mlx);
+	free(cub->mlx);
 	exit(0);
 	return (0);
 }
