@@ -14,7 +14,7 @@
 
 double	normalize_angle(double angle)
 {
-	angle = fmod(angle, 2 * M_PI);
+	angle = remainder(angle, 2 * M_PI);
 	if (angle < 0)
 		angle += 2 * M_PI;
 	return (angle);
@@ -80,6 +80,5 @@ void	init(t_cub3d *cub, t_data *map)
 	cub->map = map->map;
 	cub->fov_angle = 1.0471975512;
 	init_tex(cub, *map);
-	//printf("HERE\n");
 	rending(cub);
 }

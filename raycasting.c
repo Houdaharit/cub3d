@@ -64,7 +64,7 @@ void	raycasting(t_cub3d *cub)
 	{
 		cast_ray(cub, ray_angle);
 		wall_strip_height(cub, &wallheight, ray_angle);
-		drawing_ray(cub, wallheight, pixel, 0);
+		drawing_ray(cub, wallheight, pixel, tex_id(*cub, ray_angle));
 		ray_angle += cub->fov_angle / WIDTH;
 		pixel++;
 	}

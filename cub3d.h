@@ -132,4 +132,5 @@ void	minimap(t_cub3d *cub);
 void	init_tex(t_cub3d *cub, t_data map);
 t_inter	v_intersection(t_cub3d *cub);
 t_inter	h_intersection(t_cub3d *cub);
+int	tex_id(t_cub3d cub, double ray_angle);
 #endif
