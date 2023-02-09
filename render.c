@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 03:05:11 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 08:20:29 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:35:40 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
 void	start_end(double wallheight, int *start, int *end)
 {
 	
-		*start = 0.5 * HEIGHT - wallheight / 2;
+		*start = 0.5 * (HEIGHT - wallheight);
 		if (*start < 0) *start = 0;
-		*end = 0.5 * HEIGHT + wallheight / 2;
+		*end = 0.5 * (HEIGHT + wallheight);
 		if (*end > HEIGHT)
 		*end = HEIGHT;
 	
@@ -55,8 +55,8 @@ void	floor_and_cellings(t_cub3d *cub)
 	int	end_ceilling;
 
 	i = 0;
-	int color = 0xFF0000;
-	int pink = 0xFF69B4;
+	int color = 0x87CEEB;
+	int pink = 0x808080;
 	end_ceilling = HEIGHT / 2;
 	while (i < end_ceilling)
 	{
@@ -82,4 +82,5 @@ void	rending(t_cub3d *cub)
 	floor_and_cellings(cub);
 	raycasting(cub);
 	mlx_put_image_to_window(cub->mlx, cub->mlx_window, cub->img, 0, 0);
+	minimap(cub);
 }

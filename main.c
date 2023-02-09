@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 07:38:29 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:37:30 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	update(t_cub3d *cub)
 {
 	mlx_destroy_image(cub->mlx,cub->img);
 	rending(cub);
-	mlx_put_image_to_window(cub->mlx, cub->mlx_window, cub->img, 0, 0);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 08:02:10 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:11:24 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	raycasting(t_cub3d *cub)
 	i = 0;
 	while (i < WIDTH)
 	{
+	//	minimap(cub);
 		ray_angle = cub->angle + atan((i - 0.5 * WIDTH) / cub->dist_plane);
 		cast_ray(cub, ray_angle, &inter_h, &inter_v);
 		wall_strip_height(cub, &wallheight, ray_angle);

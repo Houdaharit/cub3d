@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 07:41:27 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:42:53 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 double	normalize_angle(double angle)
 {
-	angle = remainder(angle, 2 * M_PI);
+	angle = fmod(angle, 2 * M_PI);
 	if (angle < 0)
 		angle += 2 * M_PI;
 	return (angle);

@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 08:00:18 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/02/09 15:31:47 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ typedef struct	s_ray
 typedef struct	s_cub3d
 {
 	void	*mlx;
-	void	*win;
 	void	*addr;
 	void	*img;
 	int		width;
@@ -156,4 +155,5 @@ void	move_right(t_cub3d *game);
 void	move_left(t_cub3d *game);
 void	move_back(t_cub3d *game);
 int	update(t_cub3d *cub);
+void	minimap(t_cub3d *cub);
 #endif
