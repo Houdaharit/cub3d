@@ -3,74 +3,71 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 02:05:50 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/07 18:22:01 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/09 08:05:13 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	move(int keycode, t_cub3d *cub)
+void	move_for(t_cub3d *game)
 {
-	if (keycode == 53)
-		destroy(cub);
-	if (keycode == 124)
-		cub->player.turn_dir = 1;
-	if (keycode == 123)
-		cub->player.turn_dir = -1;
-	if (keycode == 126)
-		cub->player.walk_dir = 1;
-	if (keycode == 125)
-		cub->player.walk_dir = -1;
-	return (1);
-}
-
-int	key_release(int keycode, t_cub3d *cub)
-{
-	if (keycode == 124)
-		cub->player.turn_dir = 0;
-	if (keycode == 123)
-		cub->player.turn_dir = 0;
-	if (keycode == 126)
-		cub->player.walk_dir = 0;
-	if (keycode == 125)
-		cub->player.walk_dir = 0;
-	return (1);
-}
-
-bool	if_hit_wall(t_cub3d *cub, int x, int y)
-{
-	if (x < 0 || x > cub->width || y < 0 || y > cub->height)
-		return (1);
-	else
+	double	new_x;
+	double	new_y;
+	
+	new_x = game->player_x + SPEED * cos(game->angle);
+	new_y = game->player_y + SPEED * sin(game->angle);
+	if (check_grid(game, new_x, new_y, 1) != 1)
 	{
-		x = floor(x / cub->tile_size);
-		y = floor(y / cub->tile_size);
-		if (cub->map[y][x] == '1')
-			return (1);
+		game->player_x = new_x;
+		game->player_y = new_y;
+		update(game);
 	}
-	return (0);
 }
 
-int	move_player(t_cub3d *cub)
+void	move_back(t_cub3d *game)
 {
-	double	step;
-	double	next_x;
-	double	next_y;
-
-	cub->player.rot_angle += cub->player.turn_dir * cub->player.rotation_speed;
-	step = cub->player.walk_dir* cub->player.move_speed;
-	next_x = cub->player.posx + cos(cub->player.rot_angle) * step;
-	next_y = cub->player.posy + sin(cub->player.rot_angle) * step;
-	if (!if_hit_wall(cub, next_x, next_y))
+	double	new_x;
+	double	new_y;
+	
+	new_x = game->player_x - SPEED * cos(game->angle);
+	new_y = game->player_y - SPEED * sin(game->angle);
+	if (check_grid(game, new_x, new_y, 1) != 1)
 	{
-		cub->player.posx = next_x;
-		cub->player.posy = next_y;
-		cub->img = mlx_new_image(cub->mlx, cub->width, cub->height);
-		cub->addr = mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
-				&(cub->line_length), &(cub->endian));
+		game->player_x = new_x;
+		game->player_y = new_y;
+		update(game);
 	}
-	return (1);
+}
+
+void	move_left(t_cub3d *game)
+{
+	double	new_x;
+	double	new_y;
+	
+	new_x = game->player_x + SPEED * cos(normalize_angle(game->angle - M_PI_2));
+	new_y = game->player_y + SPEED * sin(normalize_angle(game->angle - M_PI_2));
+	if (check_grid(game, new_x, new_y, 1) != 1)
+	{
+		game->player_x = new_x;
+		game->player_y = new_y;
+		update(game);
+	}
+}
+
+void	move_right(t_cub3d *game)
+{
+	double	new_x;
+	double	new_y;
+
+	new_x = game->player_x + SPEED * cos(normalize_angle(game->angle + M_PI_2));
+	new_y = game->player_y + SPEED * sin(normalize_angle(game->angle + M_PI_2));
+	if (check_grid(game, new_x, new_y, 1) != 1)
+	{
+		game->player_x = new_x;
+		game->player_y = new_y;
+		update(game);
+	}
 }

@@ -85,23 +85,32 @@ void    get_map(t_data *data, int data_lenght)
     }
 }
 
-void    valid_map(char *av, t_data *data)
+t_data *valid_map(char *av)
 {
-    data->map_lenght = 0;
+    t_data *data;
+    
+    data = malloc(sizeof(t_data));
+    data->map_lenght = 1;
     data->file = read_fd(av);
     data->filename = strchr(av, '.');
     get_map(data, count_lines(av));
     if (data->map)
     {
+        data->data_lenght = ft_strlen(data->map[0]);
         while(data->map[data->map_lenght])
+        {
+            if(ft_strlen(data->map[data->map_lenght]) > (size_t)data->data_lenght)
+                data->data_lenght = ft_strlen(data->map[data->map_lenght]);
             data->map_lenght++;
+        }         
         data->closed = closed_map(data->map,data->map_lenght);
         data->spaces = check_spaces(data->map);
     }
-    if (strcmp(data->filename, ".cub") || !player_position(data)\
-    || !data->spaces || !data->closed)
+    if (!player_position(data)\
+    || !data->spaces)
     {
         write(2,"invalid file or map !\n", 23);
         exit(1);
     }
+    return (data);
 }

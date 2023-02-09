@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 03:05:11 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/07 18:26:02 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/09 08:20:29 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,66 @@ void	my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-float	wall_strip_height(t_cub3d *cub)
+void	start_end(double wallheight, int *start, int *end)
 {
-	double	wall_strip_height;
-	double	wall_distance;
-	double	distance_plane;
-
-	wall_distance = cub->ray.distance * cos(cub->ray.ray_angle - cub->player.rot_angle);
-	distance_plane = (cub->width / 2) / tan(cub->fov_angle / 2);
-	wall_strip_height = (cub->tile_size / wall_distance) * distance_plane;
-	return (wall_strip_height);
+	
+		*start = 0.5 * HEIGHT - wallheight / 2;
+		if (*start < 0) *start = 0;
+		*end = 0.5 * HEIGHT + wallheight / 2;
+		if (*end > HEIGHT)
+		*end = HEIGHT;
+	
 }
 
-void draw(t_cub3d *cub, int pixel)
+void	drawing_ray(t_cub3d *game,double wallheight, int i)
 {
-	int	color = 0x0000FF;
-	int	wallstripheight;
+	int	start;
+	int	end;
+	int	y;
+	int color = 0X0000FF;
 	
-	wallstripheight = (int)wall_strip_height(cub);
-	int drawstart = (cub->height / 2) - ((int)wallstripheight / 2);
-	if (drawstart < 0) drawstart = 0;
-	int drawend = ((int)wallstripheight / 2) + (cub->height / 2);
-	if (drawend > cub->height) drawend = cub->height - 1;
-	int i = drawstart;
-	if (cub->ray.vertical)
-		color *= 0.5;
-	while (i <= drawend)
+	start_end(wallheight, &start, &end);	
+	y = start;
+	while (y < end)
+	{ 
+		my_mlx_pixel_put(game, i, y, color);
+		y++;
+	}
+	
+}
+
+void	floor_and_cellings(t_cub3d *cub)
+{
+	int	i;
+	int	j;
+	int	end_ceilling;
+
+	i = 0;
+	int color = 0xFF0000;
+	int pink = 0xFF69B4;
+	end_ceilling = HEIGHT / 2;
+	while (i < end_ceilling)
 	{
-		my_mlx_pixel_put(cub, pixel, i, color);
+		j = 0;
+		while (j < WIDTH)
+			my_mlx_pixel_put(cub, j++, i, color);
 		i++;
 	}
-	mlx_put_image_to_window(cub->mlx, cub->win, cub->img, 0, 0);
+	while (i < HEIGHT)
+	{
+		j = 0;
+		while (j < WIDTH)
+			my_mlx_pixel_put(cub, j++, i,pink);
+		i++;
+	}
+}
+
+void	rending(t_cub3d *cub)
+{
+	cub->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	cub->addr = mlx_get_data_addr(cub->img,
+			&cub->bits_per_pixel, &cub->line_length, &cub->endian);
+	floor_and_cellings(cub);
+	raycasting(cub);
+	mlx_put_image_to_window(cub->mlx, cub->mlx_window, cub->img, 0, 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hor_intersection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 23:35:52 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/07 18:17:23 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/09 08:00:06 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,65 +16,43 @@ void	wallx_y_h(t_cub3d *cub, t_inter *inter)
 {
 	while (1)
 	{
-		if(inter->x >= 0 && inter->x <= cub->width
-				&& inter->y >= 0 && inter->y <= cub->height)
-		{
-			if (check_grid(*cub, inter->x, inter->y + inter->index_h) == 1)
-			{
-				inter->horizontal = true;
-				break ;
-			}
-			else
-			{
-				inter->x += inter->stepx;
-				inter->y += inter->stepy;
-			}
-			inter->wallx = inter->x;
-			inter->wally = inter->y;
-
+		if (inter->x > 0 && inter->y > 0 && inter->x
+			< cub->map_width && inter->y < cub->map_length)
+		 {
+			if (check_grid(cub, inter->x, inter->y + inter->index_h, 0) == 1)
+				break;
+			inter->x += inter->stepx;
+			inter->y += inter->stepy;		
 		}
 		else
 			break;
 	}
-	if (inter->horizontal)
-	{
-		inter->distance = hypot(inter->wallx - cub->player.posx,
-				inter->wally - cub->player.posy);
-	}
-	if (!inter->distance)
-		inter->distance = 1e30;
 }
 
-t_inter	hor_first_inter(t_cub3d *cub)
-{
-	t_inter	inter;
-
-	default_inter(&inter);
-	inter.y = floor(cub->player.posy / cub->tile_size) * cub->tile_size;
-	if (cub->ray.ray_angle > 0 && cub->ray.ray_angle < M_PI)
-		inter.y += cub->tile_size;
+void	hor_first_inter(t_cub3d *cub, double ray_ang, t_inter*inter)
+{	
+	inter->y = floor(cub->player_y / TILE) * TILE;
+	if (ray_ang > 0 && ray_ang < M_PI)
+		inter->y += TILE;
 	else
-		inter.index_h = -1;
-	inter.x = cub->player.posx + (inter.y - cub->player.posy)
-		/ tan(cub->ray.ray_angle);
-	return (inter);
+		inter->index_h = -1;
+	inter->x = cub->player_x + (inter->y - cub->player_y)
+		/ tan(ray_ang);	
 }
 
-t_inter	x_y_step_hor(t_cub3d *cub)
+void x_y_step_hor(t_cub3d *cub, double ray_ang, t_inter	*inter)
 {
-	t_inter	inter;
-
-	inter = hor_first_inter(cub);
-	inter.stepy = cub->tile_size;
-	if (!(cub->ray.ray_angle > 0 && cub->ray.ray_angle < M_PI))
-		inter.stepy *= -1;
-	inter.stepx = inter.stepy / tan(cub->ray.ray_angle);
-	if (((cub->ray.ray_angle < M_PI_2 || cub->ray.ray_angle > 3 * M_PI_2)
-				&& inter.stepx < 0))
-		inter.stepy *= -1;
-	if (!(cub->ray.ray_angle < M_PI_2
-				|| cub->ray.ray_angle > 3 * M_PI_2) && inter.stepx > 0)
-		inter.stepy *= -1;
-	wallx_y_h(cub, &inter);
-	return (inter);
+	default_inter(inter);
+	hor_first_inter(cub, ray_ang,inter);
+	inter->stepy = TILE;
+	if (!(ray_ang > 0 && ray_ang < M_PI))
+		inter->stepy *= -1;
+	inter->stepx = TILE / tan(ray_ang);		
+	if ((!(ray_ang < M_PI_2 || ray_ang > 3 * M_PI_2) \
+	&& inter->stepx > 0))
+		inter->stepx *= -1;
+	if ((ray_ang < M_PI_2
+				|| ray_ang > 3 * M_PI_2) && inter->stepx < 0)
+		inter->stepx *= -1;
+	wallx_y_h(cub, inter);
 }

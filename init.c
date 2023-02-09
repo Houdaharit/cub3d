@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/07 18:37:07 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/09 07:41:27 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ double	normalize_angle(double angle)
 {
 	angle = remainder(angle, 2 * M_PI);
 	if (angle < 0)
-		angle += (2 * M_PI);
+		angle += 2 * M_PI;
 	return (angle);
 }
 
@@ -33,61 +33,52 @@ void    default_inter(t_inter *inter)
 	inter->index_h = 0;
 }
 
-void	init_window(t_cub3d *cub)
-{
-	cub->width = 33 * 32;
-	cub->height = 14 * 32;
-	cub->mlx = mlx_init();
-	cub->win = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
-	cub->img = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-	cub->addr = mlx_get_data_addr(cub->img, &(cub->bits_per_pixel),
-			&(cub->line_length), &(cub->endian));
-}
 
 double	rotation_angle(char direction)
 {
-	if (direction == 'N')
+	if (direction == 'S')
 		return (M_PI_2);
-	else if (direction == 'S')
+	else if (direction == 'N')
 		return (1.5 * M_PI);
 	else if (direction == 'E')
 		return (0);
 	return (M_PI);
 }
 
-void	init_player(t_player *player, t_data map)
+
+void player_cordinates(t_cub3d *cube, char **map)
 {
-	player->posx = map.yPposition;
-	player->posy = map.xPposition;
-	player->face = map.direction;
-	player->move_speed = 100.0;
-	player->rotation_speed = 45 * (M_PI / 180);
-	player->rot_angle = rotation_angle(player->face);
-	player->turn_dir = 0;
-	player->walk_dir = 0;
+    cube->i = 0;
+	while (map[cube->i])
+	{
+		cube->j = 0;
+		while (map[cube->i][cube->j])
+		{
+			if (map[cube->i][cube->j] == 'N' || map[cube->i][cube->j] == 'S'
+				|| map[cube->i][cube->j] == 'W' || map[cube->i][cube->j] == 'E')
+				return ;
+			cube->j++;
+		}
+		cube->i++;
+	}
+	exit(0);
 }
 
-void	init_cub(t_cub3d *cub, t_data map)
-{
-	cub->map = map.map;
-	cub->tile_size = 32;
-	cub->fov_angle = 60 * (M_PI / 180);
-}
 
-void	init_ray(t_ray *ray)
+void	init(t_cub3d *cub, t_data *map)
 {
-	ray->vertical = false;
-	ray->horizontal = false;
-	ray->ray_angle = 0;
-	ray->distance = 0;
-	ray->wallx = 0;
-	ray->wally = 0;
-}
-
-void	init(t_cub3d *cub, t_data map)
-{
-	init_cub(cub, map);
-	init_window(cub);
-	init_player(&cub->player, map);
-	init_ray(&cub->ray);
+	player_cordinates(cub,map->map);
+	cub->width = 1600;
+	cub->height = 1000;
+	cub->map_length = map->map_lenght * TILE;
+	cub->map_width = map->data_lenght * TILE;
+	cub->player_x = cub->j * TILE;
+	cub->player_y = cub->i * TILE;	
+	cub->angle = rotation_angle(map->map[cub->i][cub->j]);
+	cub->mlx = mlx_init();
+	cub->mlx_window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
+	cub->dist_plane = (WIDTH * 0.5) / tan(M_PI / 6);
+	cub->map = map->map;
+	cub->fov_angle = 1.0471975512;
+	rending(cub);
 }

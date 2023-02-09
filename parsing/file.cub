@@ -1,7 +1,7 @@
-NO /tmp/my_cub
-SO /tmp/my_cub
-WE /tmp/my_cub
-EA /tmp/my_cub
+NO /tmp
+SO /tmp
+WE /tmp
+EA /tmp
 
 F 220,400,0
 C 225,30,0

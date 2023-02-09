@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:05:39 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/25 05:49:14 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/08 05:50:11 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,25 @@ int wall_search(char *line , int n_line, int count)
 int player_position(t_data *data)
 {
     data->p_found = 0;
-    data->i = 0;
-    while (data->map[data->i])
+    int i = 0;int  j;
+    while (data->map[i])
     {
-        data->j = 0;
-        while ((unsigned long)data->j < ft_strlen(data->map[data->i]) - 1)
+         j= 0;
+        while ((unsigned long)j < ft_strlen(data->map[i]) - 1)
         {
-            if (data->map[data->i][data->j] == 'N' || data->map[data->i][data->j] == 'S' \
-            || data->map[data->i][data->j] == 'E' || data->map[data->i][data->j] == 'W')
+            if (data->map[i][j] == 'N' || data->map[i][j] == 'S' \
+            || data->map[i][j] == 'E' || data->map[i][j] == 'W')
             {
                  data->p_found ++;
-                 data->xPposition = data->i;
-                 data->yPposition = data->j;
-				 data->direction = data->map[data->i][data->j];
             }
-            if (data->map[data->i][data->j] != 'N' && data->map[data->i][data->j] != 'S' && data->map[data->i][data->j] != 'E' && \
-            data->map[data->i][data->j] != 'W' && data->map[data->i][data->j] != '0' && data->map[data->i][data->j] != ' ' && \
-            data->map[data->i][data->j] != '1' && data->map[data->i][data->j] != '\t')
+            if (data->map[i][j] != 'N' && data->map[i][j] != 'S' && data->map[i][j] != 'E' && \
+            data->map[i][j] != 'W' && data->map[i][j] != '0' && data->map[i][j] != ' ' && \
+            data->map[i][j] != '1' && data->map[i][j] != '\t')
                 return(0);                
-            data->j++;
+            j++;
         }
-        data->i++;
-    }
+        i++;
+    }  
     if (data->p_found == 1)
         return (1);
     return (0);

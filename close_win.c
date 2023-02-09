@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   close_win.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:30:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/01/27 03:29:19 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/09 02:15:51 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	destroy(t_cub3d *cub)
 {
-	//mlx_destroy_window(cub->mlx.mlx, cub->mlx.win);
+	mlx_destroy_window(cub->mlx, cub->mlx_window);
 	free(cub->mlx);
 	exit(0);
 	return (0);

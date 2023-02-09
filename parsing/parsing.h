@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:09:39 by ahakam            #+#    #+#             */
-/*   Updated: 2023/01/25 05:48:56 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/08 05:50:23 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_data
 
 char    **ft_split(const char *str, char c);
 void    ft_free(char **strs, int p);
-void    valid_map(char *av, t_data *data);
+t_data  *valid_map(char *av);
 char    **read_fd(char *file);
 void    check_color_and_textures(t_data *data);
 int     player_position(t_data *data);
@@ -62,5 +62,6 @@ int     closed_map(char **str, int n_line);
 int     count_lines(const char *str);
 int     check_spaces(char **str);
 void    storecolores(t_data *data);
+
 
 #endif
