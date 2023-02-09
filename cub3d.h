@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 15:31:47 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/09 23:54:14 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ typedef struct s_inter
 	bool	horizontal;
 	double	distance;
 	double	index;
+	bool 	ver_flag;
+	bool 	hor_flag;
 }	t_inter;
 
 int	destroy(t_cub3d *cub);

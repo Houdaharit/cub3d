@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 16:20:21 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/09 23:55:54 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void    default_inter(t_inter *inter)
 	inter->y = 0;
 	inter->stepx = 0;
 	inter->stepy = 0;
-	inter->horizontal = false;
-	inter->vertical = false;
+	inter->horizontal = true;
+	inter->vertical = true;
 	inter->distance = 0;
 	inter->index = 0;
 }

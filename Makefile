@@ -2,7 +2,7 @@ NAME = cub3d
 
 CC = cc
 
-CFLAGS = -Wall -Wextra 
+CFLAGS = -Wall -Wextra -Werror
 
 SRC = main.c raycasting.c  init.c  hor_intersection.c intersection.c ver_intersection.c\
       parsing/parse_file.c parsing/get_next_line.c render.c\

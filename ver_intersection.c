@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ver_intersection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 00:19:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 14:56:30 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/10 00:00:44 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,16 @@ void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 			< cub->map_width && inter->stepy < cub->map_length)
 		{
 			if (check_grid(cub, inter->x + inter->index, inter->y, 0) == 1)
+			{
 				break ;
+			}
+				
 			inter->x += inter->stepx;
 			inter->y += inter->stepy;
 		}
 		else
 		{
+			inter->vertical = false;
 			break ;
 		}
 	}

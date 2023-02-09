@@ -19,6 +19,8 @@ void	init_tex(t_cub3d *cub, t_data map)
 
 int	tex_id(t_cub3d cub, double angle)
 {
+	if (cub.ray.horizontal && cub.ray.vertical)
+		printf("yd\n");
 	if (angle > 0 && angle < M_PI && cub.ray.horizontal)
 		return (1);
 	else if (cub.ray.horizontal)
