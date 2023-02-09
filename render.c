@@ -44,7 +44,6 @@ void	drawing_ray(t_cub3d *game,double wallheight, int pixel, int tex_id)
 	int	start;
 	int	end;
 	int	y;
-	//int color = 0X0000FF;
 
 	start_end(wallheight, &start, &end);	
 	y = start;
