@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 03:05:11 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 15:35:40 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/09 16:10:09 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	start_end(double wallheight, int *start, int *end)
 		if (*start < 0) *start = 0;
 		*end = 0.5 * (HEIGHT + wallheight);
 		if (*end > HEIGHT)
-		*end = HEIGHT;
+		*end = HEIGHT - 1;
 	
 }
 
