@@ -28,18 +28,18 @@ void	cast_ray(t_cub3d *cub, double ang, t_inter *inter_h, t_inter *inter_v)
 	if (d_hor > d_ver)
 	{
 		cub->ray.horizontal = true;
-		cub->inter_x = inter_v->x;
-		cub->inter_y = inter_v->y;
-		cub->ray.distance =  hypot(cub->player_x - cub->inter_x,
-				cub->player_y - cub->inter_y);
+		cub->ray.inter_x = inter_v->x;
+		cub->ray.inter_y = inter_v->y;
+		cub->ray.distance =  hypot(cub->player_x - cub->ray.inter_x,
+				cub->player_y - cub->ray.inter_y);
 	}
 	else
 	{
 		cub->ray.vertical = true;
-		cub->inter_x = inter_h->x;
-		cub->inter_y = inter_h->y;
-		cub->ray.distance =  hypot(cub->player_x - cub->inter_x,
-				cub->player_y - cub->inter_y);
+		cub->ray.inter_x = inter_h->x;
+		cub->ray.inter_y = inter_h->y;
+		cub->ray.distance =  hypot(cub->player_x - cub->ray.inter_x,
+				cub->player_y - cub->ray.inter_y);
 
 	}
 }

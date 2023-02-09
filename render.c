@@ -20,15 +20,23 @@ void	my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
+unsigned int	get_pixel(t_texture *texture, int x, int y)
+{
+	char	*dst;
+
+	dst = texture->addr_ + (y * texture->line_length + x * (texture->bits_per_pixel / 8));
+	return (*(unsigned int *)dst);
+}
+
 void	start_end(double wallheight, int *start, int *end)
 {
-	
-		*start = 0.5 * (HEIGHT - wallheight);
-		if (*start < 0) *start = 0;
-		*end = 0.5 * (HEIGHT + wallheight);
-		if (*end > HEIGHT)
+
+	*start = 0.5 * (HEIGHT - wallheight);
+	if (*start < 0) *start = 0;
+	*end = 0.5 * (HEIGHT + wallheight);
+	if (*end > HEIGHT)
 		*end = HEIGHT - 1;
-	
+
 }
 
 void	drawing_ray(t_cub3d *game,double wallheight, int i)
@@ -37,7 +45,7 @@ void	drawing_ray(t_cub3d *game,double wallheight, int i)
 	int	end;
 	int	y;
 	int color = 0X0000FF;
-	
+
 	start_end(wallheight, &start, &end);	
 	y = start;
 	while (y < end)
@@ -45,7 +53,7 @@ void	drawing_ray(t_cub3d *game,double wallheight, int i)
 		my_mlx_pixel_put(game, i, y, color);
 		y++;
 	}
-	
+
 }
 
 void	floor_and_cellings(t_cub3d *cub)

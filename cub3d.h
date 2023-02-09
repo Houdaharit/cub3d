@@ -23,7 +23,7 @@
 #define	WIDTH 1600
 #define HEIGHT 1000
 #define TILE  64
-#define SPEED 10
+#define SPEED 20
 #define ROT_SPEED 0.17453292519
 
 typedef struct s_mlx
@@ -32,83 +32,58 @@ typedef struct s_mlx
 	void	*win;
 	void	*addr;
 	void	*img;
-	int		width;
-	int		height;
-	int     bits_per_pixel;
-	int     line_length;
-	int     endian;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
 }	t_mlx;
-
-typedef struct s_player
-{
-	//maybe I have to change some variables' type
-	int			posx;
-	int			posy;
-	double		move_speed;
-	double		rotation_speed;
-	int			turn_dir;
-	int			walk_dir;
-	double		rot_angle;
-	char		face;
-}	t_player;
 
 typedef struct	s_ray
 {
 	bool	vertical;
 	bool	horizontal;
-	double	wallx;
-	double	wally;
-	double	ray_angle;
 	double	distance;
 	double	inter_x;
 	double	inter_y;
-	char	v_or_h;
-	char	wall;
-	int		flag_ver;
-	int		flag_hor;
-	double	x_ver;
-	double	y_ver;
-	double	x_hor;
-	double	y_hor;
 }	t_ray;
+
+typedef struct	s_texture
+{
+	void	*addr_;
+	int	height;
+	int	width;
+	int	line_length;
+	int	bits_per_pixel;
+}	t_texture;
 
 typedef struct	s_cub3d
 {
+	t_ray	ray;
 	void	*mlx;
 	void	*addr;
 	void	*img;
-	int		width;
-	int		height;
-	int     bits_per_pixel;
-	int     line_length;
-	int     endian;
-	t_player	player;
-	t_ray		ray;
-	int			tile_size;
-	double		fov_angle;
-	int			flag_hor;
-	double inter_y;
-	int flag_ver;
-	char v_or_h ;
-	double inter_x;
-		/////////////////////
-	void			*mlx_window;
-	int				map_rows;
-	int				map_columns;
-	int				map_length;
-	int				map_width;
-	char			**map;
-	double			player_x;
-	double			player_y;
-	double			angle;
-	double			d2pp;	
-	int				floor;
-	int				ceilling;
-	double			dist_plane;
-	int i;
-	int j;
-	void			*play;
-	void			*walls;
+	void	*mlx_window;
+	int	width;
+	int	height;
+	int	bits_per_pixel;
+	int	line_length;
+	int	endian;
+	double	fov_angle;
+	/////////////////////
+	int	map_rows;
+	int	map_columns;
+	int	map_length;
+	int	map_width;
+	char	**map;
+	double	player_x;
+	double	player_y;
+	double	angle;
+	int	floor;
+	int	ceilling;
+	double	dist_plane;
+	int	i;
+	int	j;
+	void	*play_xpm;
+	void	*walls_xpm;
 }	t_cub3d;
 
 
@@ -121,30 +96,25 @@ typedef struct s_inter
 	bool	vertical;
 	bool	horizontal;
 	double	distance;
-	double	wallx;
-	double	wally;
 	double	index_v;
 	double	index_h;
-	
-
 }	t_inter;
 
-int		destroy(t_cub3d *cub);
+int	destroy(t_cub3d *cub);
 void	init(t_cub3d *cub, t_data *map);
-double	normalize_angle(double angle);
-int		move(int keycode, t_cub3d *cub);
+int	move(int keycode, t_cub3d *cub);
 bool	if_hit_wall_collision(t_cub3d *cub, int x, int y);
-int		key_release(int keycode, t_cub3d *cub);
-int		move_player(t_cub3d *cub);
+int	key_release(int keycode, t_cub3d *cub);
+int	move_player(t_cub3d *cub);
 void	wallx_y_h(t_cub3d *cub, t_inter *inter);
 void	wallx_y_v(t_cub3d *cub, t_inter *inter);
 void	default_inter(t_inter *inter);
 void	cast_ray(t_cub3d *cub, double,t_inter *inter_h,t_inter *inter_y);
 void	raycasting(t_cub3d *cub);
-t_inter	v_intersection(t_cub3d *cub);
-t_inter	h_intersection(t_cub3d *cub);void	rending(t_cub3d *cub);
+void	rending(t_cub3d *cub);
+double	normalize_angle(double angle);
 void    draw(t_cub3d *cub, int pixel);
-int		wall_height(t_cub3d *cub);
+int	wall_height(t_cub3d *cub);
 void    my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color);
 int 	check_grid(t_cub3d *cub, double x, double y, int moving);
 void	x_y_step_ver(t_cub3d *cub, double, t_inter *);
@@ -156,4 +126,6 @@ void	move_left(t_cub3d *game);
 void	move_back(t_cub3d *game);
 int	update(t_cub3d *cub);
 void	minimap(t_cub3d *cub);
+t_inter	v_intersection(t_cub3d *cub);
+t_inter	h_intersection(t_cub3d *cub);
 #endif

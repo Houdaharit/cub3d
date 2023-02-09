@@ -72,8 +72,8 @@ void	init(t_cub3d *cub, t_data *map)
 	cub->height = 1000;
 	cub->map_length = map->map_lenght * TILE;
 	cub->map_width = map->data_lenght * TILE;
-	cub->player_x = cub->j * TILE + TILE * 0.5;
-	cub->player_y = cub->i * TILE + TILE * 0.5;	
+	cub->player_x = cub->j * TILE + (TILE * 0.5);
+	cub->player_y = cub->i * TILE + (TILE * 0.5);	
 	cub->angle = rotation_angle(map->map[cub->i][cub->j]);
 	cub->mlx = mlx_init();
 	cub->mlx_window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
