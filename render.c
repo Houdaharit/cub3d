@@ -20,11 +20,11 @@ void	my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-unsigned int	get_pixel(t_texture *texture, int x, int y)
+unsigned int	get_pixel(t_texture texture, int x, int y)
 {
 	char	*dst;
 
-	dst = texture->addr_ + (y * texture->line_length + x * (texture->bits_per_pixel / 8));
+	dst = texture.addr_ + (y * texture.line_length + x * (texture.bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
 }
 
@@ -39,18 +39,24 @@ void	start_end(double wallheight, int *start, int *end)
 
 }
 
-void	drawing_ray(t_cub3d *game,double wallheight, int i)
+void	drawing_ray(t_cub3d *game,double wallheight, int pixel, int tex_id)
 {
 	int	start;
 	int	end;
 	int	y;
-	int color = 0X0000FF;
+	//int color = 0X0000FF;
 
 	start_end(wallheight, &start, &end);	
 	y = start;
+	if (game->ray.vertical)
+		game->offsetx = (int)game->ray.inter_y % TILE;
+	else
+		game->offsetx = (int)game->ray.inter_x % TILE;
 	while (y < end)
-	{ 
-		my_mlx_pixel_put(game, i, y, color);
+	{
+		game->offsety = (y + wallheight * 0.5 - HEIGHT* 0.5) * (game->tex[tex_id].height / wallheight);
+		my_mlx_pixel_put(game, pixel, y, get_pixel(game->tex[tex_id],
+		game->offsetx, game->offsety));
 		y++;
 	}
 

@@ -8,7 +8,7 @@ SRC = main.c raycasting.c  init.c  hor_intersection.c intersection.c ver_interse
       parsing/parse_file.c parsing/get_next_line.c render.c\
       parsing/get_next_line_utils.c parsing/split.c move.c \
       parsing/more_parse.c parsing/parsing_utils.c close_win.c\
-	  minimap.c
+      minimap.c init_tex.c
 
 #SRC = tst.c
 

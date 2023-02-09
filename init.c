@@ -29,8 +29,7 @@ void    default_inter(t_inter *inter)
 	inter->horizontal = false;
 	inter->vertical = false;
 	inter->distance = 0;
-	inter->index_v = 0;
-	inter->index_h = 0;
+	inter->index = 0;
 }
 
 
@@ -80,5 +79,7 @@ void	init(t_cub3d *cub, t_data *map)
 	cub->dist_plane = (WIDTH * 0.5) / tan(M_PI / 6);
 	cub->map = map->map;
 	cub->fov_angle = 1.0471975512;
+	init_tex(cub, *map);
+	//printf("HERE\n");
 	rending(cub);
 }

@@ -1,7 +1,7 @@
-NO /tmp
-SO /tmp
-WE /tmp
-EA /tmp
+NO ./textures/bluestone.xpm
+SO ./textures/colorstone.xpm
+WE ./textures/greystone.xpm
+EA ./textures/purplestone.xpm
 
 F 220,400,0
 C 225,30,0

@@ -12,32 +12,33 @@
 
 #include "cub3d.h"
 
-void	cast_ray(t_cub3d *cub, double ang, t_inter *inter_h, t_inter *inter_v)
+void	cast_ray(t_cub3d *cub, double angle)
 {
-	double ray_ang;
 	double	d_ver;
 	double	d_hor;
+	t_inter	inter_h;
+	t_inter	inter_v;
 
-	ray_ang = normalize_angle(ang);
-	x_y_step_hor(cub,ray_ang, inter_h);
-	x_y_step_ver(cub,ray_ang, inter_v);
-	d_ver = hypot(cub->player_x - inter_v->x,         
-			cub->player_y - inter_v->y);
-	d_hor = hypot(cub->player_x - inter_h->x,
-			cub->player_y - inter_h->y);
+	angle = normalize_angle(angle);
+	x_y_step_hor(cub, angle, &inter_h);
+	x_y_step_ver(cub, angle, &inter_v);
+	d_ver = hypot(cub->player_x - inter_v.x,         
+			cub->player_y - inter_v.y);
+	d_hor = hypot(cub->player_x - inter_h.x,
+			cub->player_y - inter_h.y);
 	if (d_hor > d_ver)
 	{
 		cub->ray.horizontal = true;
-		cub->ray.inter_x = inter_v->x;
-		cub->ray.inter_y = inter_v->y;
+		cub->ray.inter_x = inter_v.x;
+		cub->ray.inter_y = inter_v.y;
 		cub->ray.distance =  hypot(cub->player_x - cub->ray.inter_x,
 				cub->player_y - cub->ray.inter_y);
 	}
 	else
 	{
 		cub->ray.vertical = true;
-		cub->ray.inter_x = inter_h->x;
-		cub->ray.inter_y = inter_h->y;
+		cub->ray.inter_x = inter_h.x;
+		cub->ray.inter_y = inter_h.y;
 		cub->ray.distance =  hypot(cub->player_x - cub->ray.inter_x,
 				cub->player_y - cub->ray.inter_y);
 
@@ -53,20 +54,18 @@ void	wall_strip_height(t_cub3d *cub, double *wallstripheight, double ray_angle)
 
 void	raycasting(t_cub3d *cub)
 {
-	int		i;
 	double	wallheight;
-	t_inter inter_h ;
-	t_inter inter_v ;
 	double	ray_angle;
+	int	pixel;
 
-	i = 0;
+	pixel = 0;
 	ray_angle = cub->angle - (cub->fov_angle * 0.5);
-	while (i < WIDTH)
+	while (pixel < WIDTH)
 	{
-		cast_ray(cub, ray_angle, &inter_h, &inter_v);
+		cast_ray(cub, ray_angle);
 		wall_strip_height(cub, &wallheight, ray_angle);
-		drawing_ray(cub,wallheight, i);
+		drawing_ray(cub, wallheight, pixel, 0);
 		ray_angle += cub->fov_angle / WIDTH;
-		i++;
+		pixel++;
 	}
 }

@@ -18,7 +18,7 @@ void	v_first_inter(t_cub3d *cub, double ray_ang, t_inter *inter)
 	if (ray_ang < M_PI_2 || ray_ang > 1.5 * M_PI)
 		inter->x += TILE;
 	else
-		inter->index_v = -1;
+		inter->index = -1;
 	inter->y = cub->player_y + (inter->x - cub->player_x) * tan(ray_ang);
 }
 
@@ -29,7 +29,7 @@ void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 		if (inter->x > 0 && inter->y > 0 && inter->x
 			< cub->map_width && inter->stepy < cub->map_length)
 		{
-			if (check_grid(cub, inter->x + inter->index_v, inter->y, 0) == 1)
+			if (check_grid(cub, inter->x + inter->index, inter->y, 0) == 1)
 				break ;
 			inter->x += inter->stepx;
 			inter->y += inter->stepy;

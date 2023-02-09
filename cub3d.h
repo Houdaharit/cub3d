@@ -48,42 +48,46 @@ typedef struct	s_ray
 
 typedef struct	s_texture
 {
+	void	*img;
 	void	*addr_;
 	int	height;
 	int	width;
+	int	endian;
 	int	line_length;
 	int	bits_per_pixel;
 }	t_texture;
 
 typedef struct	s_cub3d
 {
-	t_ray	ray;
-	void	*mlx;
-	void	*addr;
-	void	*img;
-	void	*mlx_window;
-	int	width;
-	int	height;
-	int	bits_per_pixel;
-	int	line_length;
-	int	endian;
-	double	fov_angle;
-	/////////////////////
-	int	map_rows;
-	int	map_columns;
-	int	map_length;
-	int	map_width;
-	char	**map;
-	double	player_x;
-	double	player_y;
-	double	angle;
-	int	floor;
-	int	ceilling;
-	double	dist_plane;
-	int	i;
-	int	j;
-	void	*play_xpm;
-	void	*walls_xpm;
+	t_ray		ray;
+	t_texture	tex[4];
+	void		*mlx;
+	void		*addr;
+	void		*img;
+	void		*mlx_window;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	double		fov_angle;
+	int		map_rows;
+	int		map_columns;
+	int		map_length;
+	int		map_width;
+	char		**map;
+	double		player_x;
+	double		player_y;
+	double		angle;
+	int		floor;
+	int		ceilling;
+	double		dist_plane;
+	int		i;
+	int		j;
+	void		*play_xpm;
+	void		*walls_xpm;
+	int		offsetx;
+	int		offsety;
 }	t_cub3d;
 
 
@@ -96,8 +100,7 @@ typedef struct s_inter
 	bool	vertical;
 	bool	horizontal;
 	double	distance;
-	double	index_v;
-	double	index_h;
+	double	index;
 }	t_inter;
 
 int	destroy(t_cub3d *cub);
@@ -109,7 +112,7 @@ int	move_player(t_cub3d *cub);
 void	wallx_y_h(t_cub3d *cub, t_inter *inter);
 void	wallx_y_v(t_cub3d *cub, t_inter *inter);
 void	default_inter(t_inter *inter);
-void	cast_ray(t_cub3d *cub, double,t_inter *inter_h,t_inter *inter_y);
+void	cast_ray(t_cub3d *cub, double angle);
 void	raycasting(t_cub3d *cub);
 void	rending(t_cub3d *cub);
 double	normalize_angle(double angle);
@@ -119,13 +122,14 @@ void    my_mlx_pixel_put(t_cub3d *fr, int x, int y, int color);
 int 	check_grid(t_cub3d *cub, double x, double y, int moving);
 void	x_y_step_ver(t_cub3d *cub, double, t_inter *);
 void	x_y_step_hor(t_cub3d *cub, double, t_inter *);
-void	drawing_ray(t_cub3d *game, double wallheight, int i);
+void	drawing_ray(t_cub3d *game, double wallheight, int pixel, int tex_id);
 void	move_for(t_cub3d *game);
 void	move_right(t_cub3d *game);
 void	move_left(t_cub3d *game);
 void	move_back(t_cub3d *game);
 int	update(t_cub3d *cub);
 void	minimap(t_cub3d *cub);
+void	init_tex(t_cub3d *cub, t_data map);
 t_inter	v_intersection(t_cub3d *cub);
 t_inter	h_intersection(t_cub3d *cub);
 #endif
