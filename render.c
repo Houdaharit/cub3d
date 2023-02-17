@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 03:05:11 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/10 00:34:45 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/10 05:20:05 by ahakam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,28 @@ unsigned int	get_pixel(t_texture *texture, int x, int y)
 {
 	char	*dst;
 
-	dst = texture->addr_ + (y * texture->line_length + x * (texture->bits_per_pixel / 8));
+	dst = texture->addr_ + (y * texture->line_length
+			+ x * (texture->bits_per_pixel / 8));
 	return (*(unsigned int *)dst);
 }
 
 void	start_end(double wallheight, int *start, int *end)
 {
-
 	*start = 0.5 * (HEIGHT - wallheight);
-	if (*start < 0) *start = 0;
 	*end = 0.5 * (HEIGHT + wallheight);
+	if (*start < 0)
+		*start = 0;
 	if (*end > HEIGHT)
 		*end = HEIGHT - 1;
-
 }
 
-void	drawing_ray(t_cub3d *game,double wallheight, int pixel, int tex_id)
+void	drawing_ray(t_cub3d *game, double wallheight, int pixel, int tex_id)
 {
 	int	start;
 	int	end;
 	int	y;
 
-	start_end(wallheight, &start, &end);	
+	start_end(wallheight, &start, &end);
 	y = start;
 	if (game->ray.vertical)
 		game->offsetx = (int)game->ray.inter_y % TILE;
@@ -53,37 +53,11 @@ void	drawing_ray(t_cub3d *game,double wallheight, int pixel, int tex_id)
 		game->offsetx = (int)game->ray.inter_x % TILE;
 	while (y < end)
 	{
-		game->offsety = (y + wallheight * 0.5 - HEIGHT * 0.5) * (game->tex[tex_id].height / wallheight);
+		game->offsety = (y + wallheight * 0.5 - HEIGHT * 0.5)
+			* (game->tex[tex_id].height / wallheight);
 		my_mlx_pixel_put(game, pixel, y, get_pixel(&game->tex[tex_id],
-		game->offsetx, game->offsety));
+				game->offsetx, game->offsety));
 		y++;
-	}
-
-}
-
-void	floor_and_cellings(t_cub3d *cub)
-{
-	int	i;
-	int	j;
-	int	end_ceilling;
-
-	i = 0;
-	int color = 0x87CEEB;
-	int pink = 0x808080;
-	end_ceilling = HEIGHT / 2;
-	while (i < end_ceilling)
-	{
-		j = 0;
-		while (j < WIDTH)
-			my_mlx_pixel_put(cub, j++, i, color);
-		i++;
-	}
-	while (i < HEIGHT)
-	{
-		j = 0;
-		while (j < WIDTH)
-			my_mlx_pixel_put(cub, j++, i,pink);
-		i++;
 	}
 }
 

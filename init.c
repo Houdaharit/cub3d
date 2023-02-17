@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 01:37:12 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/09 23:55:54 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/12 20:12:10 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ double	normalize_angle(double angle)
 	return (angle);
 }
 
-void    default_inter(t_inter *inter)
-{
-	inter->x = 0;
-	inter->y = 0;
-	inter->stepx = 0;
-	inter->stepy = 0;
-	inter->horizontal = true;
-	inter->vertical = true;
-	inter->distance = 0;
-	inter->index = 0;
-}
-
-
 double	rotation_angle(char direction)
 {
 	if (direction == 'S')
@@ -44,10 +31,21 @@ double	rotation_angle(char direction)
 	return (M_PI);
 }
 
-
-void player_cordinates(t_cub3d *cube, char **map)
+void	default_inter(t_inter *inter)
 {
-    cube->i = 0;
+	inter->x = 0;
+	inter->y = 0;
+	inter->stepx = 0;
+	inter->stepy = 0;
+	inter->horizontal = false;
+	inter->vertical = false;
+	inter->distance = 0;
+	inter->index = 0;
+}
+
+void	player_cordinates(t_cub3d *cube, char **map)
+{
+	cube->i = 0;
 	while (map[cube->i])
 	{
 		cube->j = 0;
@@ -63,22 +61,23 @@ void player_cordinates(t_cub3d *cube, char **map)
 	exit(0);
 }
 
-
 void	init(t_cub3d *cub, t_data *map)
 {
-	player_cordinates(cub,map->map);
+	player_cordinates(cub, map->map);
 	cub->width = 1600;
 	cub->height = 1000;
+	cub->floors = (map->farr[0] << 16) + (map->farr[1] << 8) + (map->farr[2]);
+	cub->ceilling = (map->carr[0] << 16) + (map->carr[1] << 8) + (map->carr[2]);
 	cub->map_length = map->map_lenght * TILE;
 	cub->map_width = map->data_lenght * TILE;
 	cub->player_x = cub->j * TILE + (TILE * 0.5);
-	cub->player_y = cub->i * TILE + (TILE * 0.5);	
+	cub->player_y = cub->i * TILE + (TILE * 0.5);
 	cub->angle = rotation_angle(map->map[cub->i][cub->j]);
 	cub->mlx = mlx_init();
 	cub->mlx_window = mlx_new_window(cub->mlx, WIDTH, HEIGHT, "cub3d");
-	cub->dist_plane = (WIDTH * 0.5) / tan(M_PI / 6);
-	cub->map = map->map;
 	cub->fov_angle = 1.0471975512;
+	cub->dist_plane = (WIDTH * 0.5) / tan(cub->fov_angle / 2);
+	cub->map = map->map;
 	init_tex(cub, *map);
 	rending(cub);
 }

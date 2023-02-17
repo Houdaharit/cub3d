@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hor_intersection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 23:35:52 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/10 00:14:14 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/12 20:11:44 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	wallx_y_h(t_cub3d *cub, t_inter *inter)
 	{
 		if (inter->x > 0 && inter->y > 0 && inter->x
 			< cub->map_width && inter->y < cub->map_length)
-		 {
+		{
 			if (check_grid(cub, inter->x, inter->y + inter->index, 0) == 1)
-				break;
+			{
+				inter->horizontal = true;
+				break ;
+			}
 			inter->x += inter->stepx;
-			inter->y += inter->stepy;		
+			inter->y += inter->stepy;
 		}
 		else
-		{
-			inter->horizontal = false;
-			break;
-		}
+			break ;
 	}
 }
 
@@ -40,22 +40,22 @@ void	hor_first_inter(t_cub3d *cub, double ray_ang, t_inter*inter)
 	else
 		inter->index = -1;
 	inter->x = cub->player_x + (inter->y - cub->player_y)
-		/ tan(ray_ang);	
+		/ tan(ray_ang);
 }
 
-void x_y_step_hor(t_cub3d *cub, double ray_ang, t_inter	*inter)
+void	x_y_step_hor(t_cub3d *cub, double ray_ang, t_inter	*inter)
 {
 	default_inter(inter);
-	hor_first_inter(cub, ray_ang,inter);
+	hor_first_inter(cub, ray_ang, inter);
 	inter->stepy = TILE;
 	if (!(ray_ang > 0 && ray_ang < M_PI))
 		inter->stepy *= -1;
-	inter->stepx = TILE / tan(ray_ang);		
+	inter->stepx = TILE / tan(ray_ang);
 	if ((!(ray_ang < M_PI_2 || ray_ang > 1.5 * M_PI) \
-	&& inter->stepx > 0))
+				&& inter->stepx > 0))
 		inter->stepx *= -1;
 	if ((ray_ang < M_PI_2
-				|| ray_ang > 3 * M_PI_2) && inter->stepx < 0)
+			|| ray_ang > 3 * M_PI_2) && inter->stepx < 0)
 		inter->stepx *= -1;
 	wallx_y_h(cub, inter);
 }

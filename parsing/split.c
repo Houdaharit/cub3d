@@ -3,16 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 21:09:45 by ahakam            #+#    #+#             */
-/*   Updated: 2022/12/26 21:09:46 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/02/17 18:57:39 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static int	tab_aloc(char *str, char m)
+char	*ft_strchr(const char *s, int c)
+{
+	int	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == c)
+			return ((char *)(s + i));
+		i++;
+	}
+	return (NULL);
+}
+
+static int	tab_aloc(char *str, char *m)
 {
 	int	i;
 	int	c;
@@ -21,14 +37,14 @@ static int	tab_aloc(char *str, char m)
 	c = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == m)
+		if (ft_strchr(m, str[i]))
 			i++;
 		else
 		{
 			c++;
 			while (str[i] != '\0')
 			{
-				if (str[i] == m)
+				if (ft_strchr(m, str[i]))
 					break ;
 				i++;
 			}
@@ -37,18 +53,18 @@ static int	tab_aloc(char *str, char m)
 	return (c);
 }
 
-static int	string(char *str, int *k, char m)
+static int	string(char *str, int *k, char *m)
 {
 	int	c;
 
 	c = 0;
 	while (str[*k] != '\0')
 	{
-		if (str[*k] == m)
+		if (ft_strchr(m, str[*k]))
 			*k += 1;
 		else
 		{
-			while (str[*k] != '\0' && str[*k] != m)
+			while (str[*k] != '\0' && !ft_strchr(m, str[*k]))
 			{
 				c++;
 				*k += 1;
@@ -60,7 +76,7 @@ static int	string(char *str, int *k, char m)
 	return (0);
 }
 
-static char	**ft_append(char **tab, char *str, int i, char m)
+static char	**ft_append(char **tab, char *str, int i, char *m)
 {
 	int	j;
 	int	r;
@@ -69,11 +85,11 @@ static char	**ft_append(char **tab, char *str, int i, char m)
 	while (str[i] != '\0')
 	{
 		r = 0;
-		while (str[i] == m)
+		while (ft_strchr(m, str[i]))
 			i++;
 		if (str[i] == '\0')
 			break ;
-		while (str[i] != m && str[i] != '\0')
+		while (!ft_strchr(m, str[i]) && str[i] != '\0')
 		{
 			tab[j][r] = str[i];
 			i++;
@@ -86,20 +102,7 @@ static char	**ft_append(char **tab, char *str, int i, char m)
 	return (tab);
 }
 
-void	ft_free(char **tab, int r)
-{
-    int i;
-
-    i = 0;
-	while (i < r)
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
-
-char	**ft_split(char const *str, char c)
+char	**ft_split(char const *str, char *c)
 {
 	char	**tab;
 	int		i;
@@ -119,7 +122,7 @@ char	**ft_split(char const *str, char c)
 		tab[r] = malloc(sizeof(char) * (string((char *)str, &p, c) + 1));
 		if (!tab[r])
 		{
-			ft_free(tab, r);
+			free_2d(tab);
 			return (0);
 		}
 	}

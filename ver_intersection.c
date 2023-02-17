@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ver_intersection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hharit <hharit@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/01 00:19:46 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/10 00:00:44 by hharit           ###   ########.fr       */
+/*   Updated: 2023/02/12 20:11:09 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,21 @@ void	wallx_y_v(t_cub3d *cub, t_inter *inter)
 		{
 			if (check_grid(cub, inter->x + inter->index, inter->y, 0) == 1)
 			{
+				inter->vertical = true;
 				break ;
 			}
-				
 			inter->x += inter->stepx;
 			inter->y += inter->stepy;
 		}
 		else
-		{
-			inter->vertical = false;
 			break ;
-		}
 	}
 }
 
 void	x_y_step_ver(t_cub3d *cub, double ray_ang, t_inter	*inter)
 {
 	default_inter(inter);
-	v_first_inter(cub,ray_ang,inter);
+	v_first_inter(cub, ray_ang, inter);
 	inter->stepx = TILE;
 	if (!(ray_ang < M_PI_2 || ray_ang > 1.5 * M_PI))
 		inter->stepx *= -1;
@@ -56,5 +53,5 @@ void	x_y_step_ver(t_cub3d *cub, double ray_ang, t_inter	*inter)
 	if ((!(ray_ang > 0 && ray_ang < M_PI) && inter->stepy > 0)
 		|| ((ray_ang > 0 && ray_ang < M_PI) && inter->stepy < 0))
 		inter->stepy *= -1;
-	wallx_y_v(cub,inter);
+	wallx_y_v(cub, inter);
 }

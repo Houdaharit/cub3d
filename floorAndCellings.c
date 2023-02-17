@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   floorAndCellings.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/26 00:47:05 by ahakam            #+#    #+#             */
-/*   Updated: 2023/02/10 06:59:38 by ahakam           ###   ########.fr       */
+/*   Created: 2023/02/10 04:23:14 by ahakam            #+#    #+#             */
+/*   Updated: 2023/02/12 20:07:12 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "cub3d.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
+void	floor_and_cellings(t_cub3d *cub)
+{
+	int	i;
+	int	j;
+	int	end_ceilling;
 
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strjoin2(char const *s1, char const *s2);
-char	*ft_strdup(const char *s1);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-
-#endif
+	i = 0;
+	end_ceilling = HEIGHT / 2;
+	while (i < end_ceilling)
+	{
+		j = 0;
+		while (j < WIDTH)
+			my_mlx_pixel_put(cub, j++, i, cub->ceilling);
+		i++;
+	}
+	while (i < HEIGHT)
+	{
+		j = 0;
+		while (j < WIDTH)
+			my_mlx_pixel_put(cub, j++, i, cub->floors);
+		i++;
+	}
+}
