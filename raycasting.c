@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 16:26:51 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/12 16:23:57 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/02/17 23:36:29 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	raycasting(t_cub3d *cub)
 	int		pixel;
 
 	pixel = 0;
-	ray_angle = cub->angle - (cub->fov_angle * 0.5);
 	while (pixel < WIDTH)
 	{
 		cub->ray.horizontal = false;

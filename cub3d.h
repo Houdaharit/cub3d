@@ -6,7 +6,7 @@
 /*   By: ahakam <ahakam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 00:31:57 by hharit            #+#    #+#             */
-/*   Updated: 2023/02/17 15:39:50 by ahakam           ###   ########.fr       */
+/*   Updated: 2023/02/17 23:43:47 by hharit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,4 +146,5 @@ int			tex_id(t_cub3d cub, double ray_angle);
 void		floor_and_cellings(t_cub3d *cub);
 int			key_hook(int keycode, t_cub3d *cub);
 int			mouse_hook(int move, int x, int y, t_cub3d *cub);
+void		init_minimap(t_cub3d *cub);
 #endif
